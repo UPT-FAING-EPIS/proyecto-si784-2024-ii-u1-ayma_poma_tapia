@@ -9,40 +9,40 @@ on:
       - main
 
 jobs:
-  build-and-run:
+  build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout código
+      uses: actions/checkout@v4
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'  # Puedes ajustar la versión de PHP según lo que utilices
+    - name: Configurar PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'  # Puedes ajustar la versión de PHP 
 
-      - name: Validate PHP syntax
-        run: |
-          dir /s /b *.php | ForEach-Object { php -l $_ }
+    - name: Validar sintaxis de PHP
+      run: |
+        Get-ChildItem -Recurse -Filter *.php | ForEach-Object { php -l $_.FullName }
 
-      - name: List files in biblioteca directory
-        run: dir /s biblioteca
+    - name: List files in biblioteca directory
+      run: dir biblioteca
 
-      - name: List files in Controller directory
-        run: dir /s biblioteca\Controller
+    - name: List files in Controller directory
+      run: dir biblioteca\Controller
 
-      - name: Display content of Load.php
-        run: type biblioteca\Libraries\Core\Load.php
+    - name: Display content of Load.php
+      run: Get-Content biblioteca\Libraries\Core\Load.php
 
-      #- name: Run PHP Script
-      #  run: php biblioteca\index.php
+    # - name: Run PHP Script
+    #   run: php biblioteca\index.php
 
-      # Opcional: Ejecutar análisis estático de código con PHPStan
-      # - name: Configure PHPStan
-      #   run: composer require --dev phpstan/phpstan
-      # - name: Run PHPStan
-      #   run: vendor\bin\phpstan analyse --level max
+    # Opcional: Ejecutar análisis estático de código con PHPStan
+    # - name: Configurar PHPStan
+    #   run: composer require --dev phpstan/phpstan
+    # - name: Ejecutar PHPStan
+    #   run: vendor\bin\phpstan analyse --level max
 
-      # Opcional: Ejecutar pruebas unitarias
-      # - name: Run unit tests
-      #   run: phpunit --configuration phpunit.xml
+    # Opcional: Ejecutar pruebas unitarias
+    # - name: Ejecutar pruebas unitarias
+    #   run: phpunit --configuration phpunit.xml
