@@ -5,7 +5,7 @@ env:
   SONAR_PROJECT: 'erickorganizacion_analizandoproyectos' # Key ID del proyecto de Sonar
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}           # Token de acceso de SonarCloud
   PHP_VERSION: '8.2'                                 # Versión de PHP
-  SONAR_SCANNER_VERSION: '4.7.0.2740'                # Versión de SonarScanner
+  SONAR_SCANNER_VERSION: '4.8.0.2856'                # Versión de SonarScanner
 
 on:
   push:
@@ -35,20 +35,11 @@ jobs:
       - name: Install dependencies
         run: |
           cd biblioteca                                    # Cambia al directorio donde está composer.json
-          composer install --prefer-dist --no-progress --no-suggest # Elimina --no-suggest ya que está obsoleto
+          composer install --prefer-dist --no-progress
 
       - name: Install SonarScanner
         run: |
-          SONAR_SCANNER_URL="https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${{ env.SONAR_SCANNER_VERSION }}/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux.zip"
-          echo "Descargando SonarScanner desde $SONAR_SCANNER_URL"
-          curl -sS -L $SONAR_SCANNER_URL -o sonar-scanner.zip
-          
-          # Verificar si la descarga fue exitosa
-          if [[ ! -f sonar-scanner.zip ]]; then
-            echo "Error: No se pudo descargar SonarScanner."
-            exit 1
-          fi
-          
+          curl -sS -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip -o sonar-scanner.zip
           unzip sonar-scanner.zip
           mv sonar-scanner-* sonar-scanner
           sudo mv sonar-scanner /opt/sonar-scanner
