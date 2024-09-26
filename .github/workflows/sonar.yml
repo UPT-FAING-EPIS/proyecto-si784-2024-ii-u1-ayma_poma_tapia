@@ -5,7 +5,6 @@ env:
   SONAR_PROJECT: 'erickorganizacion_analizandoproyectos' # Key ID del proyecto de Sonar
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}           # Token de acceso de SonarCloud
   PHP_VERSION: '8.2'                                 # Versión de PHP
-  SONAR_SCANNER_VERSION: '4.8.0.2856'                # Versión de SonarScanner
 
 on:
   push:
@@ -19,42 +18,26 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3  # Asegúrate de que sea la versión correcta
 
-      - name: Install PHP
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ env.PHP_VERSION }}
           extensions: mbstring, xml, curl                # Extensiones de PHP necesarias
 
-      - name: Install Composer
+      - name: Install Composer dependencies
         run: |
           curl -sS https://getcomposer.org/installer | php
           mv composer.phar /usr/local/bin/composer
-
-      - name: Install dependencies
-        run: |
-          cd biblioteca                                    # Cambia al directorio donde está composer.json
           composer install --prefer-dist --no-progress
 
-      - name: Install SonarScanner
-        run: |
-          for i in {1..5}; do
-            curl -sS -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip -o sonar-scanner.zip && break || sleep 15;
-          done
-          if [[ ! -f sonar-scanner.zip || ! unzip -tq sonar-scanner.zip ]]; then
-            echo "Error: Failed to download a valid SonarScanner zip file."
-            exit 1
-          fi
-          unzip sonar-scanner.zip
-          mv sonar-scanner-* sonar-scanner
-          sudo mv sonar-scanner /opt/sonar-scanner
-          echo 'PATH=/opt/sonar-scanner/bin:$PATH' >> $GITHUB_ENV
-          rm sonar-scanner.zip                             # Limpieza del archivo zip descargado
-
-      - name: Run SonarScanner
-        run: |
-          /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=${{ env.SONAR_PROJECT }} \
-                        -Dsonar.organization=${{ env.SONAR_ORG }} \
-                        -Dsonar.host.url=https://sonarcloud.io \
-                        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Necesario para obtener información de PR
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: 'https://sonarcloud.io'
+        with:
+          projectKey: ${{ env.SONAR_PROJECT }}
+          organization: ${{ env.SONAR_ORG }}
