@@ -39,7 +39,9 @@ jobs:
 
       - name: Install SonarScanner
         run: |
-          curl -sS -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip -o sonar-scanner.zip
+          for i in {1..5}; do
+            curl -sS -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip -o sonar-scanner.zip && break || sleep 15;
+          done
           if [[ ! -f sonar-scanner.zip || ! unzip -tq sonar-scanner.zip ]]; then
             echo "Error: Failed to download a valid SonarScanner zip file."
             exit 1
