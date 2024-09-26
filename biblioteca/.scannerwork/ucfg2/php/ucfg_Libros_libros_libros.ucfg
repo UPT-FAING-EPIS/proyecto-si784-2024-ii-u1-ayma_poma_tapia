@@ -1,0 +1,188 @@
+
+libros::libros|
+rC:\Users\TheGoat\Downloads\para pushera\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Controller\Libros.php ("1*2
+2
+
+Libros.php"
+ (	
+implicit return*π
+1 (1K
+I
+ (!
+%1"__id*1
+
+__unknown_file (*
+libros"
+modelCA
+ (0
+%2*"
+
+__unknown_file (
+
+%12selectlibro@
+>
+ (0
+$libro"__id*"
+
+__unknown_file (
+
+%2K
+I
+ ($
+%3"__id*1
+
+__unknown_file (*
+libros"
+modelEC
+ (5
+%4*"
+
+__unknown_file (
+
+%32selectmateriaC
+A
+ (5
+	$materias"__id*"
+
+__unknown_file (
+
+%4K
+I
+ (%
+%5"__id*1
+
+__unknown_file (*
+libros"
+modelGE
+ (8
+%6*"
+
+__unknown_file (
+
+%52selecteditorialD
+B
+ (8
+
+$editorial"__id*"
+
+__unknown_file (
+
+%6K
+I
+ (!
+%7"__id*1
+
+__unknown_file (*
+libros"
+modelCA
+ (0
+%8*"
+
+__unknown_file (
+
+%72selectautor@
+>
+ (0
+$autor"__id*"
+
+__unknown_file (
+
+%8
+ (s
+%9"$Arrayí
+è
+ (s
+%10"__mapSet*"
+
+__unknown_file (
+
+%9*&
+
+__unknown_file (
+
+libros*&
+
+__unknown_file (
+
+
+$libroó
+î
+ (s
+%11"__mapSet*"
+
+__unknown_file (
+
+%9*(
+
+__unknown_file (
+
+materias*)
+
+__unknown_file (
+
+	$materiasõ
+ò
+ (s
+%12"__mapSet*"
+
+__unknown_file (
+
+%9*+
+
+__unknown_file (
+editoriales**
+
+__unknown_file (
+
+
+$editorialì
+ê
+ (s
+%13"__mapSet*"
+
+__unknown_file (
+
+%9*'
+
+__unknown_file (	
+autores*&
+
+__unknown_file (
+
+
+$autor?
+=
+ (s
+$data"__id*"
+
+__unknown_file (
+
+%9L
+J
+ (
+%14"__id*1
+
+__unknown_file (*
+libros"
+viewsπ∂
+ (9
+%15*#
+
+__unknown_file (
+
+%14*&
+
+__unknown_file (
+
+libros*&
+
+__unknown_file (
+
+listar*%
+
+__unknown_file (	
+
+$data2getview*
+2B
+
+librosH

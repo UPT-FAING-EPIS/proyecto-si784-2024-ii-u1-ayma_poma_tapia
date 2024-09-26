@@ -1,0 +1,19 @@
+{
+    "name": "erick/proyecto-si784-2024-ii-u1-ayma_poma_tapia",
+    "description": "Proyecto de biblioteca para gestionar libros",
+    "autoload": {
+        "psr-4": {
+            "Erick\\ProyectoSi7842024IiU1AymaPomaTapia\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "erick",
+            "email": "zouozshalom@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^11.3"
+    }
+}

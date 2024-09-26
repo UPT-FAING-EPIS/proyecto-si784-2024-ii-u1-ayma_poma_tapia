@@ -1,0 +1,97 @@
+
+usuariosmodel::selectusuario
+uC:\Users\TheGoat\Downloads\para pushera\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Models\UsuariosModel.phpA A(!"1*×
+1C C("P
+N
+A A(!
+
+$usuario"__id*0
+
+__unknown_file (
+
+$usuariostringL
+J
+A A(!
+$clave"__id*.
+
+__unknown_file (
+
+$clavestringZ
+X
+C C(!
+usuariosmodel"	
+usuario"__id*(
+
+__unknown_file (
+
+
+$usuarioV
+T
+D D(
+usuariosmodel"
+clave"__id*&
+
+__unknown_file (
+
+
+$claveT
+R
+E9 E(G
+%1"__id*:
+
+__unknown_file (*
+usuariosmodel"	
+usuarioR
+P
+EX E(d
+%2"__id*8
+
+__unknown_file (*
+usuariosmodel"
+claveÂ
+¿
+E E(v
+%3"__concat*8
+E E(8,*
+(SELECT * FROM usuarios WHERE usuario = '*
+EH E(W
+' AND clave = '* 
+Ee E(u
+' AND estado = 1*
+E8 E(H
+
+%1*
+EW E(e
+
+%2>
+<
+E E(v
+$sql"__id*"
+
+__unknown_file (
+
+%3om
+F F("
+%4*-
+
+__unknown_file (
+usuariosmodel*$
+
+__unknown_file (
+
+$sql2select>
+<
+F F("
+$res"__id*"
+
+__unknown_file (
+
+%4"
+G G(
+
+$res:
+A" A(1
+$usuariostring:
+A3 A(@
+$clavestringB
+usuariosmodelH
