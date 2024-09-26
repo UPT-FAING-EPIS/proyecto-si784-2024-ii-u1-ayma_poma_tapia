@@ -4,7 +4,7 @@ env:
   SONAR_ORG: 'erickorganizacion'                     # Nombre de la organización de SonarCloud
   SONAR_PROJECT: 'erickorganizacion_analizandoproyectos' # Key ID del proyecto de Sonar
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}           # Token de acceso de SonarCloud
-  PHP_VERSION: '8.2'                                 # Actualiza a PHP 8.2
+  PHP_VERSION: '8.2'                                 # Versión de PHP
   SONAR_SCANNER_VERSION: '4.7.0.2740'                # Versión de SonarScanner
 
 on:
@@ -40,6 +40,7 @@ jobs:
       - name: Install SonarScanner
         run: |
           SONAR_SCANNER_URL="https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${{ env.SONAR_SCANNER_VERSION }}/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux.zip"
+          echo "Descargando SonarScanner desde $SONAR_SCANNER_URL"
           curl -sS -L $SONAR_SCANNER_URL -o sonar-scanner.zip
           
           # Verificar si la descarga fue exitosa
