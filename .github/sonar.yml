@@ -1,0 +1,52 @@
+name: Sonar Continuous Integration
+
+env:
+  SONAR_ORG: 'erickorganizacion'  # Nombre de la organización de SonarCloud
+  SONAR_PROJECT: 'erickorganizacion_analizandoproyectos'  # Key ID del proyecto de Sonar
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Token de acceso de SonarCloud
+  PHP_VERSION: '8.1'  # Cambia la versión de PHP según tus necesidades
+  SONAR_SCANNER_VERSION: '4.7.0.2740'  # Versión de SonarScanner
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  sonarqube:
+    name: Sonarqube Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, xml, curl  # Agrega extensiones de PHP necesarias
+
+      - name: Install Composer
+        run: |
+          curl -sS https://getcomposer.org/installer | php
+          mv composer.phar /usr/local/bin/composer
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Install SonarScanner
+        run: |
+          curl -sS -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${{ env.SONAR_SCANNER_VERSION }}/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux.zip -o sonar-scanner.zip
+          unzip sonar-scanner.zip
+          mv sonar-scanner-* sonar-scanner
+          sudo mv sonar-scanner /opt/sonar-scanner
+          echo 'export PATH=$PATH:/opt/sonar-scanner/bin' >> $GITHUB_ENV
+          rm sonar-scanner.zip  # Limpiar el archivo zip
+
+      - name: Run SonarScanner
+        run: |
+          sonar-scanner -Dsonar.projectKey=${{ env.SONAR_PROJECT }} \
+                        -Dsonar.organization=${{ env.SONAR_ORG }} \
+                        -Dsonar.host.url=https://sonarcloud.io \
+                        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
