@@ -43,7 +43,7 @@ jobs:
           unzip sonar-scanner.zip
           mv sonar-scanner-* sonar-scanner
           sudo mv sonar-scanner /opt/sonar-scanner
-          echo 'export PATH=$PATH:/opt/sonar-scanner/bin' >> $GITHUB_ENV
+          echo 'PATH=/opt/sonar-scanner/bin:$PATH' >> $GITHUB_ENV
           rm sonar-scanner.zip                             # Limpieza del archivo zip descargado
 
       - name: Run SonarScanner
