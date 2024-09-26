@@ -1,0 +1,105 @@
+
+mysql::update
+uC:\Users\TheGoat\Downloads\para pushera\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Libraries\Core\Mysql.php' '("1*±
+1( ((!L
+J
+' '(
+$query"__id*.
+
+__unknown_file (
+
+$querystringS
+Q
+' '(
+
+$arrvalues"__id*1
+
+__unknown_file (
+
+
+$arrvaluesarrayQ
+O
+( (( 
+mysql"
+
+strquery"__id*&
+
+__unknown_file (
+
+
+$queryV
+T
+) )(%
+mysql"
+	arrvalues"__id**
+
+__unknown_file (
+
+
+$arrvaluesM
+K
+* *(!
+%1"__id*3
+
+__unknown_file (*
+mysql"
+
+conexionM
+K
+*+ *(:
+%2"__id*3
+
+__unknown_file (*
+mysql"
+
+strqueryca
+* *(;
+%3*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%22prepareA
+?
+* *(;	
+$update"__id*"
+
+__unknown_file (
+
+%3N
+L
++  +(0
+%4"__id*4
+
+__unknown_file (*
+mysql"
+	arrvalueshf
++ +(1
+%5*'
+
+__unknown_file (
+	
+$update*"
+
+__unknown_file (
+
+%42execute>
+<
++ +(1
+$res"__id*"
+
+__unknown_file (
+
+%5"
+, ,(
+
+$res:
+' '((
+$querystring:
+'* '(:
+
+$arrvaluesarrayB	
+mysqlH

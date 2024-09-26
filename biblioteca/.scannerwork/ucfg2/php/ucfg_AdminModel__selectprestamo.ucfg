@@ -1,0 +1,33 @@
+
+adminmodel::selectprestamo|
+rC:\Users\TheGoat\Downloads\para pushera\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Models\AdminModel.php (""1*›
+1	! !(’Â
+¿
+	! !(‘
+$sql"__id*£
+
+__unknown_file (†ƒ
+€SELECT e.id, e.nombre, l.id, l.titulo, p.id, p.id_estudiante, p.id_libro, p.fecha_prestamo, p.fecha_devolucion, p.cantidad, p.observacion, p.estado FROM estudiante e INNER JOIN libro l INNER JOIN prestamo p ON p.id_estudiante = e.id WHERE p.id_libro = l.idpn
+" "(&
+%1**
+
+__unknown_file (
+
+adminmodel*$
+
+__unknown_file (
+
+$sql2
+select_all>
+<
+" "(&
+$res"__id*"
+
+__unknown_file (
+
+%1"
+# #(
+
+$resB
+
+adminmodelH

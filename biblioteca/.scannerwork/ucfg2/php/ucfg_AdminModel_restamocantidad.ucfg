@@ -1,0 +1,32 @@
+
+"adminmodel::selectprestamocantidad|
+rC:\Users\TheGoat\Downloads\para pushera\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Models\AdminModel.php (*"1*¶
+1 (9c
+a
+ (8
+$sql"__id*G
+
+__unknown_file (+)
+'SELECT * FROM prestamo WHERE estado = 1lj
+ ("
+%1**
+
+__unknown_file (
+
+adminmodel*$
+
+__unknown_file (
+
+$sql2select>
+<
+ ("
+$res"__id*"
+
+__unknown_file (
+
+%1"
+ (
+
+$resB
+
+adminmodelH

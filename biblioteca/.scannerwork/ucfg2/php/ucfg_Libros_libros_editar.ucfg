@@ -1,0 +1,226 @@
+
+libros::editar|
+rC:\Users\TheGoat\Downloads\para pushera\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Controller\Libros.php0 0("1*W
+29 9( CA
+9 9(
+%15*&
+
+__unknown_file (
+
+libros2libros*
+4*œ
+3; ;(>L
+J
+; ;(
+%16"__id*1
+
+__unknown_file (*
+libros"
+views¹¶
+; ;(=
+%17*#
+
+__unknown_file (
+
+%16*&
+
+__unknown_file (
+
+libros*&
+
+__unknown_file (
+
+editar*%
+
+__unknown_file (	
+
+$data2getview*
+4*2
+4
+
+Libros.php"
+= =(	
+implicit return*ß
+12 2([
+Y
+
+__unknown_file (
+$_GET"__superglobal*%
+
+__unknown_file (	
+$_GETg
+e
+2 2(
+%1"__mapGet*%
+
+__unknown_file (	
+
+$_GET*"
+
+__unknown_file (
+id=
+;
+2 2(
+$id"__id*"
+
+__unknown_file (
+
+%1K
+I
+3 3($
+%2"__id*1
+
+__unknown_file (*
+libros"
+modelEC
+3 3(5
+%3*"
+
+__unknown_file (
+
+%22selectmateriaC
+A
+3 3(5
+	$materias"__id*"
+
+__unknown_file (
+
+%3K
+I
+4 4(%
+%4"__id*1
+
+__unknown_file (*
+libros"
+modelGE
+4 4(8
+%5*"
+
+__unknown_file (
+
+%42selecteditorialD
+B
+4 4(8
+
+$editorial"__id*"
+
+__unknown_file (
+
+%5K
+I
+5 5(!
+%6"__id*1
+
+__unknown_file (*
+libros"
+modelCA
+5 5(0
+%7*"
+
+__unknown_file (
+
+%62selectautor@
+>
+5 5(0
+$autor"__id*"
+
+__unknown_file (
+
+%7K
+I
+6 6(!
+%8"__id*1
+
+__unknown_file (*
+libros"
+modelfd
+6 6(1
+%9*"
+
+__unknown_file (
+
+%8*#
+
+__unknown_file (
+
+$id2	editlibro@
+>
+6 6(1
+$libro"__id*"
+
+__unknown_file (
+
+%9
+7 7(r
+%10"$Array˜
+•
+7 7(r
+%11"__mapSet*#
+
+__unknown_file (
+
+%10*(
+
+__unknown_file (
+
+materias*)
+
+__unknown_file (
+
+	$materiasœ
+™
+7 7(r
+%12"__mapSet*#
+
+__unknown_file (
+
+%10*+
+
+__unknown_file (
+editoriales**
+
+__unknown_file (
+
+
+$editorial”
+‘
+7 7(r
+%13"__mapSet*#
+
+__unknown_file (
+
+%10*'
+
+__unknown_file (	
+autores*&
+
+__unknown_file (
+
+
+$autor’
+
+7 7(r
+%14"__mapSet*#
+
+__unknown_file (
+
+%10*%
+
+__unknown_file (	
+libro*&
+
+__unknown_file (
+
+
+$libro@
+>
+7 7(r
+$data"__id*#
+
+__unknown_file (
+
+%10*
+2
+3B
+
+librosH

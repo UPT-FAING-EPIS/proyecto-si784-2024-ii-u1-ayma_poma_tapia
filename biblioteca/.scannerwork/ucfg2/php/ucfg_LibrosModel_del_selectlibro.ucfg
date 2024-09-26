@@ -1,0 +1,35 @@
+
+librosmodel::selectlibro}
+sC:\Users\TheGoat\Downloads\para pushera\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Models\LibrosModel.php ("1*Ò
+1	
+ 
+(Èø
+õ
+	
+ 
+(Ç
+$sql"__id*Ù
+
+__unknown_file (¼¹
+¶SELECT a.id, a.autor, e.id, e.editorial, m.id, m.materia, l.id, l.titulo, l.cantidad, l.id_autor, l.id_editorial, l.id_materia, l.descripcion, l.imagen, l.estado FROM autor a INNER JOIN editorial e INNER JOIN materia m INNER JOIN libro l ON a.id = l.id_autor AND e.id = l.id_editorial WHERE m.id = l.id_materiaqo
+ (&
+%1*+
+
+__unknown_file (
+librosmodel*$
+
+__unknown_file (
+
+$sql2
+select_all>
+<
+ (&
+$res"__id*"
+
+__unknown_file (
+
+%1"
+ (
+
+$resB
+librosmodelH
