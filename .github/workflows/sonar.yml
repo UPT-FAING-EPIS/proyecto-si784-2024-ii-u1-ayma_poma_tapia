@@ -4,7 +4,7 @@ env:
   SONAR_ORG: 'erickorganizacion'                     # Nombre de la organización de SonarCloud
   SONAR_PROJECT: 'erickorganizacion_analizandoproyectos' # Key ID del proyecto de Sonar
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}           # Token de acceso de SonarCloud
-  PHP_VERSION: '8.1'                                 # Versión de PHP
+  PHP_VERSION: '8.2'                                 # Versión de PHP
   SONAR_SCANNER_VERSION: '4.7.0.2740'                # Versión de SonarScanner
 
 on:
