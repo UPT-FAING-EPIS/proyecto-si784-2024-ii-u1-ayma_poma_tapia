@@ -38,7 +38,7 @@ jobs:
           cd biblioteca                                    # Cambia al directorio donde está composer.json
           composer install --prefer-dist --no-progress
 
-      - name: Download SonarScanner
+      - name: Download SonarScanne
         run: |
           curl -sS -L ${{ env.SONAR_SCANNER_URL }} -o sonar-scanner.zip
           if [[ ! -f sonar-scanner.zip || ! unzip -tq sonar-scanner.zip ]]; then
