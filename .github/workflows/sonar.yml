@@ -42,12 +42,12 @@ jobs:
           curl -sS -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip -o sonar-scanner.zip
           unzip sonar-scanner.zip
           mv sonar-scanner-* sonar-scanner
-          sudo mv sonar-scanner /opt/sonar-scanner
+          mv sonar-scanner /opt/sonar-scanner
           echo 'PATH=/opt/sonar-scanner/bin:$PATH' >> $GITHUB_ENV
           rm sonar-scanner.zip                             # Limpieza del archivo zip descargado
 
       - name: Fix sh not found issue
-        run: sudo apt-get update && sudo apt-get install -y sh
+        run: apt-get update && apt-get install -y sh
 
       - name: Run SonarScanner
         run: |
