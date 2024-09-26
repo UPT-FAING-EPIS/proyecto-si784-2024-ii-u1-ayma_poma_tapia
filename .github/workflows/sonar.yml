@@ -46,9 +46,12 @@ jobs:
           echo 'PATH=/opt/sonar-scanner/bin:$PATH' >> $GITHUB_ENV
           rm sonar-scanner.zip                             # Limpieza del archivo zip descargado
 
+      - name: Fix sh not found issue
+        run: sudo apt-get update && sudo apt-get install -y sh
+
       - name: Run SonarScanner
         run: |
-          sonar-scanner -Dsonar.projectKey=${{ env.SONAR_PROJECT }} \
+          /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=${{ env.SONAR_PROJECT }} \
                         -Dsonar.organization=${{ env.SONAR_ORG }} \
                         -Dsonar.host.url=https://sonarcloud.io \
                         -Dsonar.login=${{ secrets.SONAR_TOKEN }}
