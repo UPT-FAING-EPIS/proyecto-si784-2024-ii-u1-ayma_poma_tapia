@@ -46,9 +46,6 @@ jobs:
           echo 'PATH=/opt/sonar-scanner/bin:$PATH' >> $GITHUB_ENV
           rm sonar-scanner.zip                             # Limpieza del archivo zip descargado
 
-      - name: Fix sh not found issue
-        run: apt-get update && apt-get install -y sh
-
       - name: Run SonarScanner
         run: |
           /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=${{ env.SONAR_PROJECT }} \
