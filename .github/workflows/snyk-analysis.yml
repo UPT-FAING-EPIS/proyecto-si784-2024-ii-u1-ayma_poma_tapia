@@ -22,11 +22,12 @@ jobs:
           composer install
 
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
+        uses: snyk/actions/docker@master
         with:
-          snyk_token: ${{ secrets.SNYK_TOKEN }}
           command: monitor
-          working_directory: biblioteca
+          args: --all-projects
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  # Asegúrate de tener tu token de Snyk en los secretos
 
       - name: Give execute permission to PHPUnit
         run: chmod +x vendor/bin/phpunit
