@@ -20,10 +20,18 @@ jobs:
           cd biblioteca
           composer install
 
-      - name: Install Snyk
+      - name: Install Snyk CLI
         run: npm install -g snyk
 
       - name: Run Snyk to check for vulnerabilities
-        run: snyk test
+        run: |
+          cd biblioteca  # Cambiar al directorio donde está composer.json
+          snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Give execute permission to PHPUnit
+        run: chmod +x vendor/bin/phpunit
+
+      - name: Run PHPUnit tests
+        run: php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html coverage-report || true
