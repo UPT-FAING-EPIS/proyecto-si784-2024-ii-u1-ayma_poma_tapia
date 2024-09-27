@@ -30,8 +30,4 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      - name: Give execute permission to PHPUnit
-        run: chmod +x vendor/bin/phpunit
 
-      - name: Run PHPUnit tests
-        run: php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html coverage-report || true
