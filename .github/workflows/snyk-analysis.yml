@@ -1,4 +1,4 @@
-name: Snyk Security Scan
+name: Snyk Security Check
 
 on:
   push:
@@ -11,15 +11,20 @@ on:
 jobs:
   snyk:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
         with:
-          node-version: '16'  # Puedes ajustar la versión de Node.js si es necesario
+          php-version: '8.0' # Ajusta según la versión de PHP que uses
+
+      - name: Install dependencies
+        run: |
+          composer install
+          # Si usas npm o yarn, añade el comando correspondiente aquí
+          # npm install
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
@@ -27,8 +32,3 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: test
-
-      - name: Monitor Snyk project
-        run: snyk monitor
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
