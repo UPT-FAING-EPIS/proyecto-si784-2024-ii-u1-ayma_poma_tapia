@@ -1,0 +1,28 @@
+name: PHP Security Analysis with Semgrep
+
+on: push
+
+jobs:
+  semgrep-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Install Semgrep
+      - name: Install Semgrep
+        run: |
+          pip install semgrep
+
+      # Run Semgrep analysis and generate report
+      - name: Run Semgrep
+        run: |
+          semgrep --config=p/security-audit --config=p/php --sarif --output=semgrep-report.sarif
+
+      # Upload the Semgrep report as an artifact
+      - name: Upload Semgrep report
+        uses: actions/upload-artifact@v3
+        with:
+          name: semgrep-report
+          path: semgrep-report.sarif
