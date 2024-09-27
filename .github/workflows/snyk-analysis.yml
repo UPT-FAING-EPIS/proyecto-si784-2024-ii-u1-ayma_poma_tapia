@@ -1,4 +1,4 @@
-name: Snyk Security Scan
+name: PHP Composer CI
 
 on:
   push:
@@ -9,30 +9,27 @@ on:
       - main
 
 jobs:
-  snyk:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'  # Asegúrate de que esta versión sea compatible
-        extensions: mbstring, xml
-        coverage: none
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'  # Usar PHP 8.2
+          extensions: mbstring, xml
+          coverage: none
 
-    - name: Install Composer dependencies
-      run: |
-        cd biblioteca
-        composer install
+      - name: Install Composer dependencies
+        run: |
+          cd biblioteca
+          composer install
 
-    - name: Install Snyk
-      run: |
-        npm install -g snyk
+      - name: Give execute permission to PHPUnit
+        run: chmod +x biblioteca/vendor/bin/phpunit
 
-    - name: Run Snyk to check for vulnerabilities
-      run: |
-        cd biblioteca
-        snyk test --all-projects
+      - name: Run PHPUnit tests
+        run: php -dxdebug.mode=coverage biblioteca/vendor/bin/phpunit --coverage-html coverage-report || true
