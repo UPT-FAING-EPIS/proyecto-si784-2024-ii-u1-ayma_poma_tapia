@@ -1,4 +1,4 @@
-name: Snyk Security Scan
+name: Análisis de seguridad con Snyk
 
 on:
   push:
@@ -9,30 +9,37 @@ on:
       - main
 
 jobs:
-  snyk:
+  security:
+    name: Análisis de seguridad con Snyk
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - name: Checkout del código
+      uses: actions/checkout@v3
 
-    - name: Install PHP
-      uses: shivammathur/setup-php@v2
+    - name: Configurar Node.js (para Snyk)
+      uses: actions/setup-node@v3
       with:
-        php-version: '8.1'  # Cambia a la versión de PHP que necesites
-        extensions: mbstring, xml
-        coverage: none
+        node-version: '18'
 
-    - name: Install Composer dependencies
-      run: |
-        cd biblioteca  # Cambia al directorio que contiene composer.json
-        composer install
+    - name: Cache de Composer
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: composer-${{ hashFiles('**/composer.lock') }}
 
-    - name: Install Snyk
-      run: |
-        npm install -g snyk
+    - name: Instalar dependencias de Composer
+      run: composer install --no-scripts --no-progress --prefer-dist
 
-    - name: Run Snyk to check for vulnerabilities
-      run: |
-        cd biblioteca  # Cambia al directorio que contiene composer.json
-        snyk test --all-projects
+    - name: Instalar Snyk
+      run: npm install -g snyk
+
+    - name: Escaneo de Composer con Snyk
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: snyk test --file=biblioteca/composer.lock --package-manager=composer
+
+    - name: Generar reporte de vulnerabilidades
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: snyk monitor --file=biblioteca/composer.lock --package-manager=composer
