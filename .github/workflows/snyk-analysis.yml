@@ -24,8 +24,8 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/docker@master
         with:
-          command: monitor
-          args: --all-projects
+          command: test  # Cambia de monitor a test para ejecutar la verificación
+          args: --all-projects --all-sub-projects  # Solo si hay subproyectos, de lo contrario, elimínalo
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  # Asegúrate de tener tu token de Snyk en los secretos
 
@@ -34,4 +34,3 @@ jobs:
 
       - name: Run PHPUnit tests
         run: php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html coverage-report || true
-
