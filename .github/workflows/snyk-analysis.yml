@@ -20,6 +20,9 @@ jobs:
           cd biblioteca
           composer install
 
+      - name: Install Snyk
+        run: npm install -g snyk
+
       - name: Run Snyk to check for vulnerabilities
         run: snyk test
         env:
