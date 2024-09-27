@@ -1,5 +1,4 @@
 name: Snyk
-
 on: [push, pull_request]
 
 jobs:
@@ -13,7 +12,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'  # Cambia a una versión compatible
+          php-version: '8.2'
           coverage: none
 
       - name: Install Composer dependencies
@@ -24,10 +23,9 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/docker@master
         with:
-          command: test  # Cambia de monitor a test para ejecutar la verificación
-          args: --all-projects --all-sub-projects  # Solo si hay subproyectos, de lo contrario, elimínalo
+          command: test
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  # Asegúrate de tener tu token de Snyk en los secretos
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Give execute permission to PHPUnit
         run: chmod +x vendor/bin/phpunit
