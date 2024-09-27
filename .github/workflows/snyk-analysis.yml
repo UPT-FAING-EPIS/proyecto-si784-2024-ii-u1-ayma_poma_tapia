@@ -34,3 +34,4 @@ jobs:
 
       - name: Run PHPUnit tests
         run: php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html coverage-report || true
+
