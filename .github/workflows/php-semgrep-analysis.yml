@@ -18,11 +18,11 @@ jobs:
       # Run Semgrep analysis and generate report
       - name: Run Semgrep
         run: |
-          semgrep --config=p/security-audit --config=p/php --sarif --output="/reports/semgrep-report.sarif"
+          semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
 
       # Upload the Semgrep report as an artifact
       - name: Upload Semgrep report
         uses: actions/upload-artifact@v3
         with:
           name: semgrep-report
-          path: "/reports/semgrep-report.sarif"
+          path: "reports/semgrep-report.sarif"
