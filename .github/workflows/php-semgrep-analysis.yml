@@ -15,6 +15,10 @@ jobs:
         run: |
           pip install semgrep
 
+      # Create reports directory if it doesn't exist
+      - name: Create reports directory
+        run: mkdir -p reports
+
       # Run Semgrep analysis and generate report
       - name: Run Semgrep
         run: |
@@ -26,3 +30,12 @@ jobs:
         with:
           name: semgrep-report
           path: "reports/semgrep-report.sarif"
+          
+      # Commit and push the report
+      - name: Commit and push the report
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add reports/semgrep-report.sarif
+          git commit -m "Add Semgrep report"
+          git push
