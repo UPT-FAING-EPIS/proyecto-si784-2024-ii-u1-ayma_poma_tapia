@@ -1,4 +1,4 @@
-name: Snyk Security Check
+name: Snyk
 
 on:
   push:
@@ -18,17 +18,14 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0' # Ajusta según la versión de PHP que uses
+          php-version: '8.0' # Cambia la versión según tus necesidades
 
-      - name: Install dependencies
+      - name: Install Composer dependencies
         run: |
+          cd biblioteca
           composer install
-          # Si usas npm o yarn, añade el comando correspondiente aquí
-          # npm install
 
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        uses: snyk/actions/python@master
         with:
-          args: test
+          snyk_token: ${{ secrets.SNYK_TOKEN }} # Asegúrate de tener tu token de Snyk en los secretos
