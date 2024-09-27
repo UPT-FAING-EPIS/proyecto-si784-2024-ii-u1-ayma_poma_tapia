@@ -32,10 +32,10 @@ jobs:
           path: "reports/semgrep-report.sarif"
           
       # Commit and push the report
-      - name: Commit and push the report
-        run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "github-actions@github.com"
-          git add reports/semgrep-report.sarif
-          git commit -m "Add Semgrep report"
-          git push
+     # - name: Commit and push the report
+      #  run: |
+       #   git config --local user.name "github-actions"
+        #  git config --local user.email "github-actions@github.com"
+         # git add reports/semgrep-report.sarif
+          #git commit -m "Add Semgrep report"
+          #git push
