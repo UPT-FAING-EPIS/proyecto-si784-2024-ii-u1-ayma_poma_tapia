@@ -24,7 +24,9 @@ jobs:
         run: npm install -g snyk
 
       - name: Run Snyk to check for vulnerabilities
-        run: snyk test
+        run: |
+          cd biblioteca  # Cambiar al directorio donde está composer.json
+          snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
