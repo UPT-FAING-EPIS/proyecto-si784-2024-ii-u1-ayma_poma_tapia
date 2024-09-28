@@ -48,5 +48,5 @@ jobs:
           SONAR_HOST_URL: 'https://sonarcloud.io'  # URL de SonarCloud.
         with:
           args: |
-            -Dsonar.projectKey=${{ env.SONAR_PROJECT }}  # Clave del proyecto en Sonar.
-            -Dsonar.organization=${{ env.SONAR_ORG }}  # Organización en Sonar.
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT }} 
+            -Dsonar.organization=${{ env.SONAR_ORG }}  
