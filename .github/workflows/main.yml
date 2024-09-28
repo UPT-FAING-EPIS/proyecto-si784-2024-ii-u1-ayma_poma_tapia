@@ -1,4 +1,4 @@
-name: CI/CD para Proyecto PHP Clásico
+name: Construir y Desplegar - Proyecto PHP Clásico
 
 on:
   push:
@@ -13,29 +13,31 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout código
+    - name: Checkout del código
       uses: actions/checkout@v4
+      # Se utiliza para obtener el código fuente del repositorio.
 
     - name: Configurar PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'  # Puedes ajustar la versión de PHP 
+        php-version: '8.0'  # Ajustar la versión de PHP según sea necesario.
 
     - name: Validar sintaxis de PHP
       run: |
         Get-ChildItem -Recurse -Filter *.php | ForEach-Object { php -l $_.FullName }
+      # Verifica la sintaxis de todos los archivos PHP en el proyecto.
 
-    - name: List files in biblioteca directory
+    - name: Listar archivos en el directorio biblioteca
       run: dir biblioteca
+      # Muestra los archivos en el directorio biblioteca.
 
-    - name: List files in Controller directory
+    - name: Listar archivos en el directorio Controller
       run: dir biblioteca\Controller
+      # Muestra los archivos en el directorio Controller.
 
-    - name: Display content of Load.php
+    - name: Mostrar contenido de Load.php
       run: Get-Content biblioteca\Libraries\Core\Load.php
-
-    # - name: Run PHP Script
-    #   run: php biblioteca\index.php
+      # Muestra el contenido del archivo Load.php para revisión.
 
     # Opcional: Ejecutar análisis estático de código con PHPStan
     # - name: Configurar PHPStan
