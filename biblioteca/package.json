@@ -1,0 +1,23 @@
+{
+  "name": "@UPT-FAING-EPIS/paquetes",  
+  "version": "1.0.2",
+  "main": "index.php",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DylanTapiaVargas999",  
+  "license": "ISC",
+  "description": "Proyecto de biblioteca para gestionar libros",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UPT-FAING-EPIS/proyecto-si784-2024-ii-u1-ayma_poma_tapia.git"  
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+  }
+}
