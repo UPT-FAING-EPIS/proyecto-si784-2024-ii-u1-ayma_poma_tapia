@@ -1,28 +1,49 @@
-name: PHP Security Analysis with Semgrep
+name: Ejecutar Análisis - Seguridad PHP con Semgrep
 
-on: push
+on: 
+  push: 
+    # Se activa el análisis en cada push al repositorio.
 
 jobs:
   semgrep-analysis:
     runs-on: ubuntu-latest
-    steps:
-      # Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v4
 
-      # Install Semgrep
-      - name: Install Semgrep
+    steps:
+      # Checkout del código
+      - name: Checkout del código
+        uses: actions/checkout@v4
+        # Obtiene el código fuente del repositorio.
+
+      # Instalar Semgrep
+      - name: Instalar Semgrep
         run: |
           pip install semgrep
+        # Instala Semgrep para realizar el análisis de seguridad.
 
-      # Run Semgrep analysis and generate report
-      - name: Run Semgrep
+      # Crear directorio de informes si no existe
+      - name: Crear directorio de informes
+        run: mkdir -p reports
+        # Crea un directorio para almacenar los informes generados.
+
+      # Ejecutar análisis Semgrep y generar informe
+      - name: Ejecutar Semgrep
         run: |
           semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
+        # Ejecuta Semgrep con configuraciones específicas y genera un informe en formato SARIF.
 
-      # Upload the Semgrep report as an artifact
-      - name: Upload Semgrep report
+      # Subir el informe de Semgrep como artefacto
+      - name: Subir informe de Semgrep
         uses: actions/upload-artifact@v3
         with:
-          name: semgrep-report
+          name: informe-semgrep
           path: "reports/semgrep-report.sarif"
+        # Sube el informe generado como un artefacto para su revisión posterior.
+
+      # Comentar y subir el informe
+      # - name: Comentar y subir el informe
+      #   run: |
+      #     git config --local user.name "github-actions"
+      #     git config --local user.email "github-actions@github.com"
+      #     git add reports/semgrep-report.sarif
+      #     git commit -m "Añadir informe de Semgrep"
+      #     git push

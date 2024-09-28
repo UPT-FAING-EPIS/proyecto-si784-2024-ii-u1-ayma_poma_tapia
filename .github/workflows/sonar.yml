@@ -1,46 +1,52 @@
-name: Sonar Continuous Integration
+name: Ejecutar Análisis - Integración Continua con Sonar
 
 env:
-  SONAR_ORG: 'erickorganizacion'                     
+  SONAR_ORG: 'erickorganizacion'                      
   SONAR_PROJECT: 'erickorganizacion_analizandoproyectos' 
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}           
   PHP_VERSION: '8.2'                                 
-  SONAR_SCANNER_VERSION: '4.8.0.2856'                
+  SONAR_SCANNER_VERSION: '4.8.0.2856'                 
 
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch:
+    branches: ["main"]  # Se activa en cada push a la rama principal.
+  workflow_dispatch:  # Permite la ejecución manual del workflow.
 
 jobs:
   sonarqube:
-    name: Sonarqube Analysis
+    name: Análisis de Sonarqube
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      # Checkout del código
+      - name: Checkout del código
         uses: actions/checkout@v3  
+        # Obtiene el código fuente del repositorio.
 
-      - name: Set up PHP
+      # Configurar PHP
+      - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ env.PHP_VERSION }}
-          extensions: mbstring, xml, curl                
+          php-version: ${{ env.PHP_VERSION }}  # Usa la versión de PHP definida en las variables de entorno.
+          extensions: mbstring, xml, curl  # Instala extensiones necesarias.
 
-      - name: Install Composer dependencies
+      # Instalar dependencias de Composer
+      - name: Instalar dependencias de Composer
         run: |
           curl -sS https://getcomposer.org/installer | php
           mv composer.phar /usr/local/bin/composer
-          cd biblioteca                                   # Cambia al directorio donde está composer.json
+          cd biblioteca  # Cambia al directorio donde está composer.json
           composer install --prefer-dist --no-progress
+        # Instala Composer y las dependencias del proyecto.
 
-      - name: SonarCloud Scan
+      # Escaneo con SonarCloud
+      - name: Escaneo de SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: 'https://sonarcloud.io'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token de GitHub para la autenticación.
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Token de Sonar para la autenticación.
+          SONAR_HOST_URL: 'https://sonarcloud.io'  # URL de SonarCloud.
         with:
           args: |
-            -Dsonar.projectKey=${{ env.SONAR_PROJECT }}
-            -Dsonar.organization=${{ env.SONAR_ORG }}
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT }} 
+            -Dsonar.organization=${{ env.SONAR_ORG }}  

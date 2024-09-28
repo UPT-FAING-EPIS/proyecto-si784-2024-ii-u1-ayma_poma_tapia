@@ -1,31 +1,44 @@
-name: Snyk
+name: Ejecutar Análisis - Vulnerabilidades con Snyk
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: 
+  push: 
+    # Se activa el análisis en cada push al repositorio.
+  pull_request: 
+    # Se activa el análisis en cada pull request.
 
 jobs:
-  snyk:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Set up PHP
+    steps:
+      # Checkout del código
+      - name: Checkout del código
+        uses: actions/checkout@v2
+        # Obtiene el código fuente del repositorio.
+
+      # Configurar PHP
+      - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0' # Cambia la versión según tus necesidades
+          php-version: '8.2'  # Ajusta la versión de PHP según sea necesario.
+          coverage: none
 
-      - name: Install Composer dependencies
+      # Instalar dependencias de Composer
+      - name: Instalar dependencias de Composer
         run: |
           cd biblioteca
           composer install
+        # Cambia al directorio biblioteca e instala las dependencias necesarias.
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
-        with:
-          snyk_token: ${{ secrets.SNYK_TOKEN }} # Asegúrate de tener tu token de Snyk en los secretos
+      # Instalar Snyk CLI
+      - name: Instalar Snyk CLI
+        run: npm install -g snyk
+        # Instala la CLI de Snyk para realizar análisis de seguridad.
+
+      # Ejecutar Snyk para verificar vulnerabilidades
+      - name: Ejecutar Snyk para verificar vulnerabilidades
+        run: |
+          cd biblioteca  # Cambiar al directorio donde está composer.json
+          snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  # Usa el token de Snyk almacenado en secretos.
