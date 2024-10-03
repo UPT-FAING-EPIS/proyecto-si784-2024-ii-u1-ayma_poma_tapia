@@ -2,9 +2,11 @@ name: Ejecutar Análisis - Vulnerabilidades con Snyk
 
 on: 
   push: 
-    # Se activa el análisis en cada push al repositorio.
+    branches:
+      - main
   pull_request: 
-    # Se activa el análisis en cada pull request.
+    branches:
+      - main
 
 jobs:
   build:
@@ -14,46 +16,47 @@ jobs:
       # Checkout del código
       - name: Checkout del código
         uses: actions/checkout@v2
-        # Obtiene el código fuente del repositorio.
 
       # Configurar PHP
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'  # Ajusta la versión de PHP según sea necesario.
+          php-version: '8.2'
           coverage: none
+
+      # Validar archivo composer.json
+      - name: Validar composer.json
+        run: |
+          cd biblioteca
+          composer validate
 
       # Instalar dependencias de Composer
       - name: Instalar dependencias de Composer
         run: |
           cd biblioteca
           composer install
-        # Cambia al directorio biblioteca e instala las dependencias necesarias.
 
       # Instalar Snyk CLI
       - name: Instalar Snyk CLI
         run: npm install -g snyk
-        # Instala la CLI de Snyk para realizar análisis de seguridad.
 
-      # Ejecutar Snyk para verificar vulnerabilidades y generar archivo SARIF y HTML
+      # Ejecutar Snyk para verificar vulnerabilidades
       - name: Ejecutar Snyk para verificar vulnerabilidades
         run: |
-          cd biblioteca  # Cambiar al directorio donde está composer.json
-          snyk test --file=composer.json --sarif-file-output=snyk-code.sarif --json-file-output=snyk-report.json
-          mkdir -p ../reports  # Crear la carpeta "reports" si no existe
-          snyk-to-html -i snyk-report.json -o ../reports/snyk-report.html
+          cd biblioteca
+          snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Cargar el archivo SARIF a GitHub Code Scanning
-      - name: Upload SARIF result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: biblioteca/snyk-code.sarif
-
-      # Subir el archivo HTML como artefacto
-      - name: Upload HTML result
+      # Subir el reporte HTML generado por Snyk
+      - name: Subir reporte HTML
         uses: actions/upload-artifact@v3
         with:
           name: snyk-html-report
-          path: reports/snyk-report.html
+          path: biblioteca/reports/snyk-report.html  # Directorio específico de reports
+
+      # Subir resultado SARIF a GitHub Code Scanning
+      - name: Subir resultado SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: biblioteca/reports/snyk-report.sarif
