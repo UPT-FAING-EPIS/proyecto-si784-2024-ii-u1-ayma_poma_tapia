@@ -59,4 +59,4 @@ jobs:
       - name: Subir resultado SARIF
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: biblioteca/reports/snyk-report.sarif
+          sarif_file: reports/snyk-report.html
