@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: snyk-html-report
-          path: biblioteca/reports/snyk-report.html  # Directorio específico de reports
+          path: reports/snyk-report.html
 
       # Subir resultado SARIF a GitHub Code Scanning
       - name: Subir resultado SARIF
