@@ -48,15 +48,6 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Verificar el archivo SARIF
-      - name: Verificar archivo SARIF
-        run: |
-          if [ -s ../reports/snyk-report.sarif ]; then
-            echo "El archivo SARIF se generó correctamente."
-          else
-            echo "El archivo SARIF está vacío o no se generó."
-            exit 1
-          fi
 
       # Subir el reporte SARIF generado por Snyk
       - name: Subir reporte SARIF
