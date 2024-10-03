@@ -35,10 +35,25 @@ jobs:
         run: npm install -g snyk
         # Instala la CLI de Snyk para realizar análisis de seguridad.
 
-      # Ejecutar Snyk para verificar vulnerabilidades
+      # Ejecutar Snyk para verificar vulnerabilidades y generar archivo SARIF y HTML
       - name: Ejecutar Snyk para verificar vulnerabilidades
         run: |
           cd biblioteca  # Cambiar al directorio donde está composer.json
-          snyk test
+          snyk test --file=composer.json --sarif-file-output=snyk-code.sarif --json-file-output=snyk-report.json
+          mkdir -p ../reports  # Crear la carpeta "reports" si no existe
+          snyk-to-html -i snyk-report.json -o ../reports/snyk-report.html
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  # Usa el token de Snyk almacenado en secretos.
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      # Cargar el archivo SARIF a GitHub Code Scanning
+      - name: Upload SARIF result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: biblioteca/snyk-code.sarif
+
+      # Subir el archivo HTML como artefacto
+      - name: Upload HTML result
+        uses: actions/upload-artifact@v3
+        with:
+          name: snyk-html-report
+          path: reports/snyk-report.html
