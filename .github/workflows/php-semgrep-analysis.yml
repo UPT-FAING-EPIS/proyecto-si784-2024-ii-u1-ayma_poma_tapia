@@ -31,6 +31,13 @@ jobs:
           semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
         # Ejecuta Semgrep con configuraciones específicas y genera un informe en formato SARIF.
 
+      # Subir el informe de Semgrep a GitHub Code Scanning
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: reports/semgrep-report.sarif
+        # Sube el informe SARIF de Semgrep a GitHub Code Scanning para su análisis.
+
       # Subir el informe de Semgrep como artefacto
       - name: Subir informe de Semgrep
         uses: actions/upload-artifact@v3
@@ -38,12 +45,3 @@ jobs:
           name: informe-semgrep
           path: "reports/semgrep-report.sarif"
         # Sube el informe generado como un artefacto para su revisión posterior.
-
-      # Comentar y subir el informe
-      # - name: Comentar y subir el informe
-      #   run: |
-      #     git config --local user.name "github-actions"
-      #     git config --local user.email "github-actions@github.com"
-      #     git add reports/semgrep-report.sarif
-      #     git commit -m "Añadir informe de Semgrep"
-      #     git push
