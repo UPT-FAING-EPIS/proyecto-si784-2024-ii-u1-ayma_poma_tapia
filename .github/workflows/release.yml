@@ -1,0 +1,26 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'release-*'  # Esto detecta cualquier tag que empiece con 'release-' (por ejemplo, release-1.0.0, release-2.1.0)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ github.ref }}
+        body: |
+          ### Cambios en esta versión:
+          - Mejora 1
+          - Corrección de errores
+          - Actualización de dependencias
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Se utiliza el token automático proporcionado por GitHub
