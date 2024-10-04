@@ -29,22 +29,44 @@
             $materia = $_POST['materia'];
             $num_pagina = $_POST['num_pagina'];
             $descripcion = $_POST['descripcion'];
+            
             $img = $_FILES['imagen'];
             $imgName = $img['name'];
             $nombreTemp = $img['tmp_name'];
-            $fecha = md5(date("Y-m-d h:i:s")) ."_". $imgName;
-            $destino = "Assets/images/libros/" . $fecha;
-            if ($imgName == null || $imgName == "") {
-                $insert = $this->model->insertarLibro($titulo, $cantidad, $autor, $editorial, $anio_edicion, $materia, $num_pagina, $descripcion, "default-avatar.png");
-            }else{
-                $insert = $this->model->insertarLibro($titulo, $cantidad, $autor ,$editorial, $anio_edicion, $materia, $num_pagina, $descripcion, $fecha);
-                if ($insert) {
-                    move_uploaded_file($nombreTemp, $destino);
+            
+            // Validar y sanitizar el nombre del archivo
+            if ($imgName != null && $imgName != "") {
+                $imgNameSeguro = preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($imgName, PATHINFO_FILENAME));
+                $imgNameSeguro = uniqid() . '-' . $imgNameSeguro . '.' . pathinfo($imgName, PATHINFO_EXTENSION); // Generar nombre único
+
+                // Verificar el tipo de archivo permitido
+                $tipoArchivo = mime_content_type($nombreTemp);
+                $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
+
+                if (!in_array($tipoArchivo, $tiposPermitidos)) {
+                    die('Tipo de archivo no permitido.');
                 }
+
+                // Definir la ruta de destino
+                $destino = "Assets/images/libros/" . $imgNameSeguro;
+
+                // Insertar libro en la base de datos con la imagen
+                $insert = $this->model->insertarLibro($titulo, $cantidad, $autor, $editorial, $anio_edicion, $materia, $num_pagina, $descripcion, $imgNameSeguro);
+                
+                if ($insert) {
+                    if (!move_uploaded_file($nombreTemp, $destino)) {
+                        die('Error al subir el archivo.');
+                    }
+                }
+            } else {
+                // Insertar libro con imagen por defecto
+                $insert = $this->model->insertarLibro($titulo, $cantidad, $autor, $editorial, $anio_edicion, $materia, $num_pagina, $descripcion, "default-avatar.png");
             }
+
             header("location: " . base_url() . "libros");
             die();
         }
+
         public function editar()
         {
             $id = $_GET['id'];
@@ -71,26 +93,53 @@
             $materia = $_POST['materia'];
             $num_pagina = $_POST['num_pagina'];
             $descripcion = $_POST['descripcion'];
+            
             $img = $_FILES['imagen'];
             $imgName = $img['name'];
             $nombreTemp = $img['tmp_name'];
-            $fecha = md5(date("Y-m-d h:i:s")) . "_" . $imgName;
-            $destino = "Assets/images/libros/".$fecha;
+            
+            // Obtener la imagen antigua
             $imgAntigua = $_POST['foto'];
+
             if ($imgName == null || $imgName == "") {
-                $actualizar = $this->model->actualizarLibro($titulo, $cantidad, $autor ,$editorial, $anio_edicion, $materia, $num_pagina, $descripcion, $imgAntigua, $id);
+                // Si no se subió una nueva imagen, se mantiene la imagen antigua
+                $actualizar = $this->model->actualizarLibro($titulo, $cantidad, $autor, $editorial, $anio_edicion, $materia, $num_pagina, $descripcion, $imgAntigua, $id);
             } else {
-                $actualizar = $this->model->actualizarLibro($titulo, $cantidad, $autor ,$editorial, $anio_edicion, $materia, $num_pagina, $descripcion, $fecha, $id);
+                // Sanitizar el nombre del archivo
+                $imgNameSeguro = preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($imgName, PATHINFO_FILENAME));
+                $imgNameSeguro = uniqid() . '-' . $imgNameSeguro . '.' . pathinfo($imgName, PATHINFO_EXTENSION); // Generar nombre único
+
+                // Verificar el tipo de archivo permitido
+                $tipoArchivo = mime_content_type($nombreTemp);
+                $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
+
+                if (!in_array($tipoArchivo, $tiposPermitidos)) {
+                    die('Tipo de archivo no permitido.');
+                }
+
+                // Definir la ruta de destino
+                $destino = "Assets/images/libros/" . $imgNameSeguro;
+
+                // Actualizar libro en la base de datos con la nueva imagen
+                $actualizar = $this->model->actualizarLibro($titulo, $cantidad, $autor, $editorial, $anio_edicion, $materia, $num_pagina, $descripcion, $imgNameSeguro, $id);
+                
                 if ($actualizar) {
-                    move_uploaded_file($nombreTemp, $destino);
+                    // Subir nueva imagen
+                    if (!move_uploaded_file($nombreTemp, $destino)) {
+                        die('Error al subir el archivo.');
+                    }
+
+                    // Eliminar la imagen antigua si no es la imagen por defecto
                     if ($imgAntigua != "default-avatar.png") {
                         unlink("Assets/images/libros/" . $imgAntigua);
                     }
                 }
             }
+
             header("location: " . base_url() . "libros");
             die();
         }
+
         public function eliminar()
         {
             $id = $_POST['id'];
