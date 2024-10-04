@@ -44,9 +44,10 @@ jobs:
       - name: Ejecutar Snyk para verificar vulnerabilidades
         run: |
           cd biblioteca
-          snyk test --sarif-file-output=reports/snyk-report.sarif
+          snyk test --sarif > ../reports/snyk-report.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
 
       # Subir el reporte SARIF generado por Snyk
       - name: Subir reporte SARIF
