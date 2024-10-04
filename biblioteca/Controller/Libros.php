@@ -89,15 +89,14 @@
             $autor = $_POST['autor'];
             $editorial = $_POST['editorial'];
             $anio_edicion = $_POST['anio_edicion'];
-            $editorial = $_POST['editorial'];
             $materia = $_POST['materia'];
             $num_pagina = $_POST['num_pagina'];
             $descripcion = $_POST['descripcion'];
-            
+
             $img = $_FILES['imagen'];
             $imgName = $img['name'];
             $nombreTemp = $img['tmp_name'];
-            
+
             // Obtener la imagen antigua
             $imgAntigua = $_POST['foto'];
 
@@ -122,16 +121,25 @@
 
                 // Actualizar libro en la base de datos con la nueva imagen
                 $actualizar = $this->model->actualizarLibro($titulo, $cantidad, $autor, $editorial, $anio_edicion, $materia, $num_pagina, $descripcion, $imgNameSeguro, $id);
-                
+
                 if ($actualizar) {
                     // Subir nueva imagen
                     if (!move_uploaded_file($nombreTemp, $destino)) {
-                        die('Error al subir el archivo.');
+                        error_log("Error al subir el archivo: " . $imgName);
+                        die('Ocurrió un error al procesar tu solicitud.');
                     }
 
                     // Eliminar la imagen antigua si no es la imagen por defecto
                     if ($imgAntigua != "default-avatar.png") {
-                        unlink("Assets/images/libros/" . $imgAntigua);
+                        // Sanitizar el nombre del archivo
+                        $imgAntiguaSanitizado = preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($imgAntigua, PATHINFO_FILENAME));
+                        $imgAntiguaSanitizado = $imgAntiguaSanitizado . '.' . pathinfo($imgAntigua, PATHINFO_EXTENSION);
+
+                        $filePath = "Assets/images/libros/" . $imgAntiguaSanitizado;
+
+                        if (file_exists($filePath)) {
+                            unlink($filePath);
+                        }
                     }
                 }
             }
@@ -139,6 +147,7 @@
             header("location: " . base_url() . "libros");
             die();
         }
+
 
         public function eliminar()
         {
