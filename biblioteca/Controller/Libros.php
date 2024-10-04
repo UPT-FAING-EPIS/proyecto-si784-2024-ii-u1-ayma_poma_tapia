@@ -131,13 +131,15 @@
 
                     // Eliminar la imagen antigua si no es la imagen por defecto
                     if ($imgAntigua != "default-avatar.png") {
-                        // Sanitizar el nombre del archivo
+                        // Sanitizar el nombre de la imagen antigua
                         $imgAntiguaSanitizado = preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($imgAntigua, PATHINFO_FILENAME));
-                        $imgAntiguaSanitizado = $imgAntiguaSanitizado . '.' . pathinfo($imgAntigua, PATHINFO_EXTENSION);
+                        $imgAntiguaSanitizado .= '.' . pathinfo($imgAntigua, PATHINFO_EXTENSION); // Agregar extensión
 
-                        $filePath = "Assets/images/libros/" . $imgAntiguaSanitizado;
+                        // Definir la ruta completa
+                        $filePath = realpath("Assets/images/libros/") . DIRECTORY_SEPARATOR . $imgAntiguaSanitizado;
 
-                        if (file_exists($filePath)) {
+                        // Verificar si el archivo está en la ruta esperada y existe
+                        if (strpos($filePath, realpath("Assets/images/libros/")) === 0 && file_exists($filePath)) {
                             unlink($filePath);
                         }
                     }
@@ -147,6 +149,7 @@
             header("location: " . base_url() . "libros");
             die();
         }
+
 
 
         public function eliminar()
