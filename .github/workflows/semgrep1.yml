@@ -49,12 +49,16 @@ jobs:
           path: "reports/semgrep-report.html"
         # Sube el informe HTML generado como un artefacto para su revisión posterior.
 
-      # Comentar y subir los informes
+      # Configurar Git y realizar commit de los informes
+      - name: Configurar Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        # Configura Git para hacer commit.
+
       - name: Comentar y subir los informes
         run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "github-actions@github.com"
           git add reports/semgrep-report.sarif reports/semgrep-report.html
           git commit -m "Añadir informes de Semgrep" || echo "No hay cambios para commitear"
-          git push
+          git push origin main
         # Agrega los informes generados al repositorio y realiza un commit.
