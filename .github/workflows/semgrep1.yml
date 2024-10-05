@@ -1,45 +1,59 @@
-name: Semgrep Analysis
+name: Ejecutar Análisis - Seguridad PHP con Semgrep
 
 on: 
-  push:
-    branches:
-      - main
+  push: 
+    # Se activa el análisis en cada push al repositorio.
 
 jobs:
-  security:
+  semgrep-analysis:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      # Checkout del código
+      - name: Checkout del código
         uses: actions/checkout@v4
+        # Obtiene el código fuente del repositorio.
 
-      # Set up Semgrep
-      - name: Set up Semgrep
-        run: docker pull semgrep/semgrep
-
-      # Run Semgrep Scan and produce SARIF report
-      - name: Run Semgrep
-        run: docker run --rm -v $(pwd):/src semgrep/semgrep semgrep scan --config="p/default" --sarif --output=report.sarif --metrics=off
-
-      # Upload SARIF result to GitHub Code Scanning
-      - name: Upload SARIF file to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: report.sarif
-
-      # Run Semgrep Scan and produce JSON report
-      - name: Run Semgrep for JSON Output
-        run: docker run --rm -v $(pwd):/src semgrep/semgrep semgrep scan --config="p/default" --json --output semgrep.json --metrics=off
-
-      # Install prospector-html
-      - name: Install prospector-html
-        run: python -m pip install prospector2html
-
-      # Convert Semgrep JSON results to HTML
-      - name: Convert Semgrep results to HTML
-        run: prospector-html --input semgrep.json --output semgrep-report.html --filter semgrep || true
-
-      # Create folder for reports
-      - name: Move report to reports folder
+      # Instalar Semgrep
+      - name: Instalar Semgrep
         run: |
-          mkdir -p reports  # Create directory if it doesn't exist
-          mv semgrep-report.html reports/  # Move the HTML report to the reports folder
+          pip install semgrep
+        # Instala Semgrep para realizar el análisis de seguridad.
+
+      # Crear directorio de informes si no existe
+      - name: Crear directorio de informes
+        run: mkdir -p reports
+        # Crea un directorio para almacenar los informes generados.
+
+      # Ejecutar análisis Semgrep y generar informes en SARIF y HTML
+      - name: Ejecutar Semgrep
+        run: |
+          semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
+          semgrep --config=p/security-audit --config=p/php --html --output="reports/semgrep-report.html"
+        # Ejecuta Semgrep y genera informes en formatos SARIF y HTML.
+
+      # Subir el informe de Semgrep (SARIF) como artefacto
+      - name: Subir informe SARIF de Semgrep
+        uses: actions/upload-artifact@v3
+        with:
+          name: informe-semgrep-sarif
+          path: "reports/semgrep-report.sarif"
+        # Sube el informe SARIF generado como un artefacto para su revisión posterior.
+
+      # Subir el informe HTML de Semgrep como artefacto
+      - name: Subir informe HTML de Semgrep
+        uses: actions/upload-artifact@v3
+        with:
+          name: informe-semgrep-html
+          path: "reports/semgrep-report.html"
+        # Sube el informe HTML generado como un artefacto para su revisión posterior.
+
+      # Comentar y subir los informes
+      - name: Comentar y subir los informes
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add reports/semgrep-report.sarif reports/semgrep-report.html
+          git commit -m "Añadir informes de Semgrep"
+          git push
+        # Agrega los informes generados al repositorio y realiza un commit.
