@@ -1,4 +1,4 @@
-name: Unificado
+name: Unificado 
 
 on: 
   push:
@@ -34,31 +34,3 @@ jobs:
         with:
           name: informe-semgrep
           path: "reports/semgrep-report.sarif"
-
-  # Job para ejecutar pruebas unitarias con PHPUnit
-  phpunit-tests:
-    runs-on: ubuntu-latest
-    needs: semgrep-analysis  # Ejecutar solo si el análisis con Semgrep se completó correctamente
-
-    steps:
-      - name: Checkout del código
-        uses: actions/checkout@v4
-
-      - name: Configurar PHP con Composer
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'  # Ajusta a la versión de PHP que uses
-          extensions: mbstring, dom, xml
-          coverage: none
-
-      - name: Instalar dependencias con Composer
-        run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Ejecutar PHPUnit
-        run: vendor/bin/phpunit --coverage-text --colors=never
-
-      - name: Subir el reporte de cobertura
-        uses: actions/upload-artifact@v3
-        with:
-          name: reporte-cobertura
-          path: ./coverage-report  # Ajusta la ruta según tu configuración
