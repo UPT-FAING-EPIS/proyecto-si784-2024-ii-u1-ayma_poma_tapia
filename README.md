@@ -2,7 +2,7 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=15603992)
 
 <div align="center">
-# Proyecto "Sistema de Gestión Bibliotecaria y Préstamo de Libros"
+## Proyecto "Sistema de Gestión Bibliotecaria y Préstamo de Libros"
 
 **INTEGRANTES**  
 **Erick Ayma**  
@@ -34,6 +34,6 @@ Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria 
 - **Gestión de autores, editoriales y materias**: Registrar, editar y eliminar autores, editoriales y materias asociadas a los libros.
 - **Generación de reportes**: Generación de archivos PDF relacionados con los préstamos y el catálogo de libros.
 - **Carga de archivos**: Cargar y gestionar archivos relacionados con los libros, como imágenes de portada o PDFs.
-release/releases-0.2.4
+
 
 </div>
