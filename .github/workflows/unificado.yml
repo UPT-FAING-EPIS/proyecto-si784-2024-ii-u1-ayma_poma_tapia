@@ -1,8 +1,10 @@
-name: Unificado 
+name: Unificado
 
 on: 
   push:
     # Se ejecuta cuando hay un push al repositorio
+    tags:
+      - 'release-*'  # Detecta cualquier tag que empiece con 'release-' (por ejemplo, release-1.0.0, release-2.1.0)
   pull_request:
     # También se ejecuta en cada pull request
 
@@ -34,3 +36,23 @@ jobs:
         with:
           name: informe-semgrep
           path: "reports/semgrep-report.sarif"
+
+  # Job para crear un release en GitHub
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Crear release en GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          body: |
+            ### Cambios en esta versión:
+            - Mejora 1
+            - Corrección de errores
+            - Actualización de dependencias
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token automático proporcionado por GitHub
