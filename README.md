@@ -8,13 +8,13 @@
 **INTEGRANTES**  
 **Erick Ayma**  
 **Fabiola Poma**  
-**Dylan Tapia**
+**Dylan Tapia**  
 
 ---
 
 ## Descripción del Proyecto
 
-Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria y préstamo de libros que optimiza la administración de recursos bibliográficos. La plataforma permitirá a los bibliotecarios gestionar eficientemente los libros y sus préstamos, al tiempo que facilitará el acceso a la información para los usuarios.
+Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria y préstamo de libros que optimiza la administración de recursos bibliográficos. La plataforma permitirá a los bibliotecarios gestionar eficientemente los libros y sus préstamos, al tiempo que facilitará el acceso a la información para los usuarios. Mediante la digitalización de recursos y una interfaz intuitiva, se busca fomentar el uso de la biblioteca, incrementar la participación comunitaria en actividades culturales y educativas, y liberar al personal para que se enfoque en iniciativas que promuevan la lectura.
 
 ---
 
@@ -30,18 +30,18 @@ Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria 
 
 ## Funcionalidades Principales
 
-- **Gestión de Libros**: Permite a los bibliotecarios añadir, editar y eliminar libros de la base de datos.
-- **Préstamo de Libros**: Los usuarios pueden solicitar préstamos y los bibliotecarios pueden gestionar el proceso de préstamo.
-- **Búsqueda de Libros**: Funcionalidad para buscar libros por título, autor o género.
-- **Registro de Usuarios**: Gestión de cuentas de usuarios para facilitar el acceso al sistema.
-- **Reportes**: Generación de reportes sobre los préstamos realizados, libros disponibles, etc.
+- **Gestión de Libros:** Permite a los bibliotecarios añadir, editar y eliminar libros de la base de datos.
+- **Préstamo de Libros:** Los usuarios pueden solicitar préstamos y los bibliotecarios pueden gestionar el proceso de préstamo.
+- **Búsqueda de Libros:** Funcionalidad para buscar libros por título, autor o género.
+- **Registro de Usuarios:** Gestión de cuentas de usuarios para facilitar el acceso al sistema.
+- **Reportes:** Generación de reportes sobre los préstamos realizados, libros disponibles, etc.
 
 ---
 
 ## 🌱 Futuras Mejoras
 
-- **Interfaz de Usuario Mejorada**: Se planea desarrollar una interfaz más amigable para mejorar la experiencia del usuario.
-- **Sistema de Notificaciones**: Implementar notificaciones para recordar a los usuarios sobre la fecha de devolución de libros.
-- **Integración con Sistemas Externos**: Posibilidad de integrar con otras plataformas de gestión de bibliotecas.
+- **Interfaz de Usuario Mejorada:** Se planea desarrollar una interfaz más amigable para mejorar la experiencia del usuario.
+- **Sistema de Notificaciones:** Implementar notificaciones para recordar a los usuarios sobre la fecha de devolución de libros.
+- **Integración con Sistemas Externos:** Posibilidad de integrar con otras plataformas de gestión de bibliotecas.
 
 </div>
