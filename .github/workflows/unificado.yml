@@ -1,12 +1,19 @@
-name: Análisis de Seguridad
+name: Unificado
 
-on: 
-  push: 
-    branches:
-      - main
+env:
+  SONAR_ORG: 'erickorganizacion'                      
+  SONAR_PROJECT: 'erickorganizacion_analizandoproyectos' 
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}           
+  PHP_VERSION: '8.2'                                 
+  SONAR_SCANNER_VERSION: '4.8.0.2856'                  
+
+on:
+  push:
+    branches: ["main"]  # Se activa en cada push a la rama principal.
   pull_request: 
     branches:
-      - main
+      - main  # Se activa en cada pull request a la rama principal.
+  workflow_dispatch:  # Permite la ejecución manual del workflow.
 
 jobs:
   security-analysis:
@@ -21,8 +28,8 @@ jobs:
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
-          coverage: none
+          php-version: ${{ env.PHP_VERSION }}  # Usa la versión de PHP definida en las variables de entorno.
+          extensions: mbstring, xml, curl  # Instala extensiones necesarias.
 
       # Validar archivo composer.json
       - name: Validar composer.json
@@ -33,8 +40,11 @@ jobs:
       # Instalar dependencias de Composer
       - name: Instalar dependencias de Composer
         run: |
-          cd biblioteca
-          composer install
+          curl -sS https://getcomposer.org/installer | php
+          mv composer.phar /usr/local/bin/composer
+          cd biblioteca  # Cambia al directorio donde está composer.json
+          composer install --prefer-dist --no-progress
+        # Instala Composer y las dependencias del proyecto.
 
       # Instalar Snyk CLI
       - name: Instalar Snyk CLI
@@ -78,3 +88,15 @@ jobs:
         with:
           name: informe-semgrep
           path: "reports/semgrep-report.sarif"
+
+      # Escaneo con SonarCloud
+      - name: Escaneo de SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token de GitHub para la autenticación.
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Token de Sonar para la autenticación.
+          SONAR_HOST_URL: 'https://sonarcloud.io'  # URL de SonarCloud.
+        with:
+          args: |
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT }} 
+            -Dsonar.organization=${{ env.SONAR_ORG }}  
