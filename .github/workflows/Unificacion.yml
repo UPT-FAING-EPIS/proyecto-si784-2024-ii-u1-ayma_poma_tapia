@@ -82,6 +82,29 @@ jobs:
           name: informe-semgrep
           path: "reports/semgrep-report.sarif"
 
+      # Crear carpeta para reportes
+      - name: Crear carpeta de Reportes
+        run: mkdir -p Reportes  # Crear directorio si no existe
+
+      # Mover el informe HTML a la carpeta de Reportes
+      - name: Mover informe a la carpeta Reportes
+        run: |
+          mv reports/semgrep-report.html Reportes/  # Mover el informe HTML a la carpeta
+
+      # Publicar informe en GitHub Pages
+      - name: Configurar Git para GitHub Pages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Publicar informe en GitHub Pages
+        run: |
+          git fetch origin gh-pages  # Obtener la última versión de la rama gh-pages
+          git checkout gh-pages  # Cambiar a la rama gh-pages
+          cp Reportes/semgrep-report.html reporte-semgrep.html  # Copiar y renombrar
+          git add reporte-semgrep.html
+          git commit -m "Publicando informe Semgrep como reporte-semgrep.html" || echo "No hay cambios para confirmar"  # Manejar caso si no hay cambios
+
       - name: Escaneo de SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         env:
