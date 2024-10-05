@@ -1,55 +1,53 @@
 name: Unificado
 
 env:
-  SONAR_ORG: 'erickorganizacion'                      
-  SONAR_PROJECT: 'erickorganizacion_analizandoproyectos' 
-  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}           
-  PHP_VERSION: '8.2'                                 
-  SONAR_SCANNER_VERSION: '4.8.0.2856'                  
+  SONAR_ORG: 'erickorganizacion'
+  SONAR_PROJECT: 'erickorganizacion_analizandoproyectos'
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  PHP_VERSION: '8.2'
+  SONAR_SCANNER_VERSION: '4.8.0.2856'
 
 on:
   push:
-    branches: ["main"]  # Se activa en cada push a la rama principal.
-  pull_request: 
+    branches: ["main"]
+  pull_request:
     branches:
-      - main  # Se activa en cada pull request a la rama principal.
-  workflow_dispatch:  # Permite la ejecución manual del workflow.
+      - main
+  workflow_dispatch:
 
 jobs:
   security-analysis:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout del código
       - name: Checkout del código
         uses: actions/checkout@v2
 
-      # Configurar PHP
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ env.PHP_VERSION }}  # Usa la versión de PHP definida en las variables de entorno.
-          extensions: mbstring, xml, curl  # Instala extensiones necesarias.
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, xml, curl
 
-      # Validar archivo composer.json
       - name: Validar composer.json
         run: |
           cd biblioteca
           composer validate
 
-      # Instalar dependencias de Composer
       - name: Instalar dependencias de Composer
         run: |
           curl -sS https://getcomposer.org/installer | php
           mv composer.phar /usr/local/bin/composer
-          cd biblioteca  # Cambia al directorio donde está composer.json
+          cd biblioteca
           composer install --prefer-dist --no-progress
 
-      # Instalar Snyk CLI
+      - name: Actualizar dependencias de Python
+        run: |
+          pip install --upgrade urllib3 chardet
+
       - name: Instalar Snyk CLI
         run: npm install -g snyk
 
-      # Ejecutar Snyk para verificar vulnerabilidades y generar reporte SARIF
       - name: Ejecutar Snyk para verificar vulnerabilidades
         run: |
           cd biblioteca
@@ -57,55 +55,40 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Subir el reporte SARIF generado por Snyk
       - name: Subir reporte SARIF de Snyk
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: reports/snyk-report.sarif
 
-      # Instalar Semgrep
       - name: Instalar Semgrep
         run: pip install semgrep
 
-      # Crear directorio de informes para Semgrep
       - name: Crear directorio de informes
         run: mkdir -p reports
 
-      # Ejecutar Semgrep
+      # Ejecutar Semgrep con métricas desactivadas y modo verbose para más detalles.
       - name: Ejecutar Semgrep
         run: |
-          semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
-          semgrep report --sarif "reports/semgrep-report.sarif" --output "reports/semgrep-report.html"
+          semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif" --verbose --metrics=off
 
-      # Generar informe HTML a partir del reporte SARIF de Semgrep
-      - name: Generar informe HTML de Semgrep
-        run: |
-          pip install semgrep  # Asegúrate de tener semgrep instalado
-          semgrep --sarif-to-html reports/semgrep-report.sarif > reports/semgrep-report.html
-
-      # Subir resultado de Semgrep a GitHub Code Scanning
       - name: Subir resultado de Semgrep
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: reports/semgrep-report.sarif
 
-      # Subir informe de Semgrep como artefacto
       - name: Subir informe de Semgrep como artefacto
         uses: actions/upload-artifact@v3
         with:
           name: informe-semgrep
-          path: |
-            reports/semgrep-report.sarif
-            reports/semgrep-report.html  # Asegúrate de incluir el HTML como artefacto
+          path: "reports/semgrep-report.sarif"
 
-      # Escaneo con SonarCloud
       - name: Escaneo de SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token de GitHub para la autenticación.
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Token de Sonar para la autenticación.
-          SONAR_HOST_URL: 'https://sonarcloud.io'  # URL de SonarCloud.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: 'https://sonarcloud.io'
         with:
           args: |
-            -Dsonar.projectKey=${{ env.SONAR_PROJECT }} 
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT }}
             -Dsonar.organization=${{ env.SONAR_ORG }}
