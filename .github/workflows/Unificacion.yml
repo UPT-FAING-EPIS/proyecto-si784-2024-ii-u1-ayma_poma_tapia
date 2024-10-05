@@ -76,6 +76,12 @@ jobs:
       - name: Ejecutar Semgrep
         run: semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
 
+      # Generar informe HTML a partir del reporte SARIF de Semgrep
+      - name: Generar informe HTML de Semgrep
+        run: |
+          pip install semgrep  # Asegúrate de tener semgrep instalado
+          semgrep --sarif-to-html reports/semgrep-report.sarif > reports/semgrep-report.html
+
       # Subir resultado de Semgrep a GitHub Code Scanning
       - name: Subir resultado de Semgrep
         uses: github/codeql-action/upload-sarif@v3
@@ -87,7 +93,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: informe-semgrep
-          path: "reports/semgrep-report.sarif"
+          path: |
+            reports/semgrep-report.sarif
+            reports/semgrep-report.html  # Asegúrate de incluir el HTML como artefacto
+
 
       # Escaneo con SonarCloud
       - name: Escaneo de SonarCloud
