@@ -1,1 +1,64 @@
+name: CI/CD Pipeline - PHP Project
 
+on: 
+  push:
+    # Se ejecuta cuando hay un push al repositorio
+  pull_request:
+    # También se ejecuta en cada pull request
+
+jobs:
+  # Job para el análisis de seguridad con Semgrep
+  semgrep-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Instalar Semgrep
+        run: pip install semgrep
+
+      - name: Crear directorio de informes
+        run: mkdir -p reports
+
+      - name: Ejecutar Semgrep
+        run: semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
+
+      - name: Subir resultado a GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: reports/semgrep-report.sarif
+
+      - name: Subir informe de Semgrep como artefacto
+        uses: actions/upload-artifact@v3
+        with:
+          name: informe-semgrep
+          path: "reports/semgrep-report.sarif"
+
+  # Job para ejecutar pruebas unitarias con PHPUnit
+  phpunit-tests:
+    runs-on: ubuntu-latest
+    needs: semgrep-analysis  # Ejecutar solo si el análisis con Semgrep se completó correctamente
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP con Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'  # Ajusta a la versión de PHP que uses
+          extensions: mbstring, dom, xml
+          coverage: none
+
+      - name: Instalar dependencias con Composer
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Ejecutar PHPUnit
+        run: vendor/bin/phpunit --coverage-text --colors=never
+
+      - name: Subir el reporte de cobertura
+        uses: actions/upload-artifact@v3
+        with:
+          name: reporte-cobertura
+          path: ./coverage-report  # Ajusta la ruta según tu configuración
