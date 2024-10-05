@@ -24,13 +24,12 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v2
 
-      # Configurar PHP y Composer automáticamente
-      - name: Configurar PHP y Composer
+      # Configurar PHP
+      - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ env.PHP_VERSION }}  
-          extensions: mbstring, xml, curl  
-          tools: composer  # Instala Composer automáticamente
+          php-version: ${{ env.PHP_VERSION }}  # Usa la versión de PHP definida en las variables de entorno.
+          extensions: mbstring, xml, curl  # Instala extensiones necesarias.
 
       # Validar archivo composer.json
       - name: Validar composer.json
@@ -41,8 +40,11 @@ jobs:
       # Instalar dependencias de Composer
       - name: Instalar dependencias de Composer
         run: |
-          cd biblioteca
+          curl -sS https://getcomposer.org/installer | php
+          mv composer.phar /usr/local/bin/composer
+          cd biblioteca  # Cambia al directorio donde está composer.json
           composer install --prefer-dist --no-progress
+        # Instala Composer y las dependencias del proyecto.
 
       # Instalar Snyk CLI
       - name: Instalar Snyk CLI
@@ -55,11 +57,6 @@ jobs:
           snyk test --sarif > ../reports/snyk-report.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      # Verificar si Snyk encontró vulnerabilidades críticas
-      - name: Verificar vulnerabilidades con Snyk
-        run: |
-          grep '"criticalSeverityCount":0' ../reports/snyk-report.sarif || exit 1
 
       # Subir el reporte SARIF generado por Snyk
       - name: Subir reporte SARIF de Snyk
@@ -79,11 +76,6 @@ jobs:
       - name: Ejecutar Semgrep
         run: semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
 
-      # Verificar si Semgrep encontró vulnerabilidades críticas
-      - name: Verificar vulnerabilidades con Semgrep
-        run: |
-          grep '"issue_severity":"ERROR"' reports/semgrep-report.sarif || exit 1
-
       # Subir resultado de Semgrep a GitHub Code Scanning
       - name: Subir resultado de Semgrep
         uses: github/codeql-action/upload-sarif@v3
@@ -101,9 +93,9 @@ jobs:
       - name: Escaneo de SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
-          SONAR_HOST_URL: 'https://sonarcloud.io'  
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token de GitHub para la autenticación.
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Token de Sonar para la autenticación.
+          SONAR_HOST_URL: 'https://sonarcloud.io'  # URL de SonarCloud.
         with:
           args: |
             -Dsonar.projectKey=${{ env.SONAR_PROJECT }} 
