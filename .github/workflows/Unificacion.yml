@@ -72,9 +72,11 @@ jobs:
       - name: Crear directorio de informes
         run: mkdir -p reports
 
-      # Ejecutar Semgrep
+           # Ejecutar Semgrep
       - name: Ejecutar Semgrep
-        run: semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
+        run: |
+          semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
+          semgrep report --sarif "reports/semgrep-report.sarif" --output "reports/semgrep-report.html"
 
       # Generar informe HTML a partir del reporte SARIF de Semgrep
       - name: Generar informe HTML de Semgrep
