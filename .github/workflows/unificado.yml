@@ -1,58 +1,80 @@
-name: Unificado
+name: Análisis de Seguridad
 
 on: 
-  push:
-    # Se ejecuta cuando hay un push al repositorio
-    tags:
-      - 'release-*'  # Detecta cualquier tag que empiece con 'release-' (por ejemplo, release-1.0.0, release-2.1.0)
-  pull_request:
-    # También se ejecuta en cada pull request
+  push: 
+    branches:
+      - main
+  pull_request: 
+    branches:
+      - main
 
 jobs:
-  # Job para el análisis de seguridad con Semgrep
-  semgrep-analysis:
+  security-analysis:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout del código
       - name: Checkout del código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
+      # Configurar PHP
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      # Validar archivo composer.json
+      - name: Validar composer.json
+        run: |
+          cd biblioteca
+          composer validate
+
+      # Instalar dependencias de Composer
+      - name: Instalar dependencias de Composer
+        run: |
+          cd biblioteca
+          composer install
+
+      # Instalar Snyk CLI
+      - name: Instalar Snyk CLI
+        run: npm install -g snyk
+
+      # Ejecutar Snyk para verificar vulnerabilidades y generar reporte SARIF
+      - name: Ejecutar Snyk para verificar vulnerabilidades
+        run: |
+          cd biblioteca
+          snyk test --sarif > ../reports/snyk-report.sarif
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      # Subir el reporte SARIF generado por Snyk
+      - name: Subir reporte SARIF de Snyk
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: reports/snyk-report.sarif
+
+      # Instalar Semgrep
       - name: Instalar Semgrep
         run: pip install semgrep
 
+      # Crear directorio de informes para Semgrep
       - name: Crear directorio de informes
         run: mkdir -p reports
 
+      # Ejecutar Semgrep
       - name: Ejecutar Semgrep
         run: semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
 
-      - name: Subir resultado a GitHub Code Scanning
+      # Subir resultado de Semgrep a GitHub Code Scanning
+      - name: Subir resultado de Semgrep
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: reports/semgrep-report.sarif
 
+      # Subir informe de Semgrep como artefacto
       - name: Subir informe de Semgrep como artefacto
         uses: actions/upload-artifact@v3
         with:
           name: informe-semgrep
           path: "reports/semgrep-report.sarif"
-
-  # Job para crear un release en GitHub
-  release:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout del código
-        uses: actions/checkout@v3
-
-      - name: Crear release en GitHub
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref }}
-          body: |
-            ### Cambios en esta versión:
-            - Mejora 1
-            - Corrección de errores
-            - Actualización de dependencias
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token automático proporcionado por GitHub
