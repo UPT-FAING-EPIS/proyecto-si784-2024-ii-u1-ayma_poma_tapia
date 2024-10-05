@@ -2,9 +2,13 @@ name: CI/CD Pipeline - PHP Project
 
 on: 
   push:
-    # Se ejecuta cuando hay un push al repositorio
+    tags:
+      - 'release-*'  # Detecta cualquier tag que empiece con 'release-' (para el job de release)
+    branches:
+      - '**'  # Detecta los pushes a cualquier rama (para análisis y pruebas)
   pull_request:
-    # También se ejecuta en cada pull request
+    branches:
+      - '**'  # Se ejecuta en cada pull request
 
 jobs:
   # Job para el análisis de seguridad con Semgrep
@@ -62,3 +66,24 @@ jobs:
         with:
           name: reporte-cobertura
           path: ./coverage-report  # Ajusta la ruta según tu configuración
+
+  # Job para crear una nueva release cuando se detecta un tag
+  release:
+    runs-on: ubuntu-latest
+    needs: [semgrep-analysis, phpunit-tests]  # Ejecutar solo si Semgrep y PHPUnit pasaron
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Crear GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          body: |
+            ### Cambios en esta versión:
+            - Mejora 1
+            - Corrección de errores
+            - Actualización de dependencias
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Se utiliza el token automático proporcionado por GitHub
