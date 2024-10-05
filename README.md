@@ -27,17 +27,13 @@ Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria 
 ---
 
 ## Funcionalidades Principales
-- **Gestión de Libros:** Permite a los bibliotecarios añadir, editar y eliminar libros de la base de datos.
-- **Préstamo de Libros:** Los usuarios pueden solicitar préstamos y los bibliotecarios pueden gestionar el proceso de préstamo.
-- **Búsqueda de Libros:** Funcionalidad para buscar libros por título, autor o género.
-- **Registro de Usuarios:** Gestión de cuentas de usuarios para facilitar el acceso al sistema.
-- **Reportes:** Generación de reportes sobre los préstamos realizados, libros disponibles, etc.
 
----
-
-## 🌱 Futuras Mejoras
-- **Interfaz de Usuario Mejorada:** Se planea desarrollar una interfaz más amigable para mejorar la experiencia del usuario.
-- **Sistema de Notificaciones:** Implementar notificaciones para recordar a los usuarios sobre la fecha de devolución de libros.
-- **Integración con Sistemas Externos:** Posibilidad de integrar con otras plataformas de gestión de bibliotecas.
+- **Gestión de usuarios**: Registro, edición y eliminación de usuarios del sistema.
+- **Gestión de libros**: Agregar, modificar y eliminar libros en el sistema.
+- **Gestión de préstamos**: Registrar, actualizar y finalizar préstamos de libros.
+- **Gestión de autores, editoriales y materias**: Registrar, editar y eliminar autores, editoriales y materias asociadas a los libros.
+- **Generación de reportes**: Generación de archivos PDF relacionados con los préstamos y el catálogo de libros.
+- **Carga de archivos**: Cargar y gestionar archivos relacionados con los libros, como imágenes de portada o PDFs.
+release/releases-0.2.4
 
 </div>
