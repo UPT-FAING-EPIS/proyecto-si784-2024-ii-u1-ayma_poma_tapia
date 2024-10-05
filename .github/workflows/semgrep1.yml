@@ -1,4 +1,4 @@
-name: Ejecutar Análisis - Seguridad PHP con Semgrep
+name: Html
 
 on: 
   push: 
@@ -28,7 +28,7 @@ jobs:
       # Ejecutar análisis Semgrep y generar informes en SARIF y HTML
       - name: Ejecutar Semgrep
         run: |
-          semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
+          semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif" --max-target-bytes=2000000 --verbose
           semgrep --config=p/security-audit --config=p/php --output="reports/semgrep-report.txt" --verbose
           semgrep report --output="reports/semgrep-report.html" --config=p/security-audit --config=p/php reports/semgrep-report.txt
         # Ejecuta Semgrep y genera informes en formatos SARIF y HTML.
@@ -55,6 +55,6 @@ jobs:
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
           git add reports/semgrep-report.sarif reports/semgrep-report.html
-          git commit -m "Añadir informes de Semgrep"
+          git commit -m "Añadir informes de Semgrep" || echo "No hay cambios para commitear"
           git push
         # Agrega los informes generados al repositorio y realiza un commit.
