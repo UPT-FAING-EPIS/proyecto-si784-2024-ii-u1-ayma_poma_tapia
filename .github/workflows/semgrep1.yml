@@ -12,18 +12,15 @@ jobs:
       # Checkout del código
       - name: Checkout del código
         uses: actions/checkout@v4
-        # Obtiene el código fuente del repositorio.
 
       # Instalar Semgrep
       - name: Instalar Semgrep
         run: |
           pip install semgrep
-        # Instala Semgrep para realizar el análisis de seguridad.
 
       # Crear directorio de informes si no existe
       - name: Crear directorio de informes
         run: mkdir -p reports
-        # Crea un directorio para almacenar los informes generados.
 
       # Ejecutar análisis Semgrep y generar informes en SARIF y HTML
       - name: Ejecutar Semgrep
@@ -31,7 +28,10 @@ jobs:
           semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif" --max-target-bytes=2000000 --verbose
           semgrep --config=p/security-audit --config=p/php --output="reports/semgrep-report.txt" --verbose
           semgrep report --output="reports/semgrep-report.html" --config=p/security-audit --config=p/php reports/semgrep-report.txt
-        # Ejecuta Semgrep y genera informes en formatos SARIF y HTML.
+
+      # Listar archivos en el directorio de informes
+      - name: Listar archivos en el directorio de informes
+        run: ls -la reports
 
       # Subir el informe de Semgrep (SARIF) como artefacto
       - name: Subir informe SARIF de Semgrep
@@ -39,7 +39,6 @@ jobs:
         with:
           name: informe-semgrep-sarif
           path: "reports/semgrep-report.sarif"
-        # Sube el informe SARIF generado como un artefacto para su revisión posterior.
 
       # Subir el informe HTML de Semgrep como artefacto
       - name: Subir informe HTML de Semgrep
@@ -47,18 +46,15 @@ jobs:
         with:
           name: informe-semgrep-html
           path: "reports/semgrep-report.html"
-        # Sube el informe HTML generado como un artefacto para su revisión posterior.
 
       # Configurar Git y realizar commit de los informes
       - name: Configurar Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        # Configura Git para hacer commit.
 
       - name: Comentar y subir los informes
         run: |
           git add reports/semgrep-report.sarif reports/semgrep-report.html
           git commit -m "Añadir informes de Semgrep" || echo "No hay cambios para commitear"
           git push origin main
-        # Agrega los informes generados al repositorio y realiza un commit.
