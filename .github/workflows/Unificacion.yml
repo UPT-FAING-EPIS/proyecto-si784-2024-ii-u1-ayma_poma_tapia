@@ -44,7 +44,6 @@ jobs:
           mv composer.phar /usr/local/bin/composer
           cd biblioteca  # Cambia al directorio donde está composer.json
           composer install --prefer-dist --no-progress
-        # Instala Composer y las dependencias del proyecto.
 
       # Instalar Snyk CLI
       - name: Instalar Snyk CLI
@@ -72,7 +71,7 @@ jobs:
       - name: Crear directorio de informes
         run: mkdir -p reports
 
-           # Ejecutar Semgrep
+      # Ejecutar Semgrep
       - name: Ejecutar Semgrep
         run: |
           semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
@@ -99,7 +98,6 @@ jobs:
             reports/semgrep-report.sarif
             reports/semgrep-report.html  # Asegúrate de incluir el HTML como artefacto
 
-
       # Escaneo con SonarCloud
       - name: Escaneo de SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
@@ -110,4 +108,4 @@ jobs:
         with:
           args: |
             -Dsonar.projectKey=${{ env.SONAR_PROJECT }} 
-            -Dsonar.organization=${{ env.SONAR_ORG }}  
+            -Dsonar.organization=${{ env.SONAR_ORG }}
