@@ -29,7 +29,8 @@ jobs:
       - name: Ejecutar Semgrep
         run: |
           semgrep --config=p/security-audit --config=p/php --sarif --output="reports/semgrep-report.sarif"
-          semgrep --config=p/security-audit --config=p/php --html --output="reports/semgrep-report.html"
+          semgrep --config=p/security-audit --config=p/php --output="reports/semgrep-report.txt" --verbose
+          semgrep report --output="reports/semgrep-report.html" --config=p/security-audit --config=p/php reports/semgrep-report.txt
         # Ejecuta Semgrep y genera informes en formatos SARIF y HTML.
 
       # Subir el informe de Semgrep (SARIF) como artefacto
