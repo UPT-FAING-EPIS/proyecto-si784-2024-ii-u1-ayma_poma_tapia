@@ -34,6 +34,6 @@ Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria 
 - **Gestión de autores, editoriales y materias**: Registrar, editar y eliminar autores, editoriales y materias asociadas a los libros.
 - **Generación de reportes**: Generación de archivos PDF relacionados con los préstamos y el catálogo de libros.
 - **Carga de archivos**: Cargar y gestionar archivos relacionados con los libros, como imágenes de portada o PDFs.
-release/releases-0.2.4
+
 
 </div>
