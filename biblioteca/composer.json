@@ -1,7 +1,6 @@
 {
     "name": "erick/proyecto-si784-2024-ii-u1-ayma_poma_tapia",
     "description": "Proyecto de biblioteca para gestionar libros",
-    "type": "library",
     "autoload": {
         "psr-4": {
             "Erick\\ProyectoSi7842024IiU1AymaPomaTapia\\": "src/"
