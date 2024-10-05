@@ -8,7 +8,7 @@
 **INTEGRANTES**  
 **Erick Ayma**  
 **Fabiola Poma**  
-**Dylan Tapia**  
+**Dylan Tapia**
 
 ---
 
@@ -19,17 +19,15 @@ Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria 
 ---
 
 ## 💻 Tecnologías Utilizadas
-
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white)  
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white)  
-![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=plastic&logo=mysql&logoColor=white)  
-![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=plastic&logo=php&logoColor=white)  
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E)  
+![CSS3](media/css3.png)  
+![HTML5](media/html5.png)  
+![MySQL](media/mysql.png)  
+![PHP](media/php.png)  
+![JavaScript](media/javascript.png)  
 
 ---
 
 ## Funcionalidades Principales
-
 - **Gestión de Libros:** Permite a los bibliotecarios añadir, editar y eliminar libros de la base de datos.
 - **Préstamo de Libros:** Los usuarios pueden solicitar préstamos y los bibliotecarios pueden gestionar el proceso de préstamo.
 - **Búsqueda de Libros:** Funcionalidad para buscar libros por título, autor o género.
@@ -39,7 +37,6 @@ Este proyecto consiste en el desarrollo de un sistema de gestión bibliotecaria 
 ---
 
 ## 🌱 Futuras Mejoras
-
 - **Interfaz de Usuario Mejorada:** Se planea desarrollar una interfaz más amigable para mejorar la experiencia del usuario.
 - **Sistema de Notificaciones:** Implementar notificaciones para recordar a los usuarios sobre la fecha de devolución de libros.
 - **Integración con Sistemas Externos:** Posibilidad de integrar con otras plataformas de gestión de bibliotecas.
