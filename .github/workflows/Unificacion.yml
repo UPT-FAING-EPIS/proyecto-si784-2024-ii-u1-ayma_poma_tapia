@@ -44,6 +44,10 @@ jobs:
           cd biblioteca
           composer install --prefer-dist --no-progress
 
+      # Crear directorio para informes
+      - name: Crear directorio de informes
+        run: mkdir -p reports
+
       # Instalar Snyk CLI
       - name: Instalar Snyk CLI
         run: npm install -g snyk
@@ -59,7 +63,12 @@ jobs:
       # Verificar si Snyk encontró vulnerabilidades críticas
       - name: Verificar vulnerabilidades con Snyk
         run: |
-          grep '"criticalSeverityCount":0' ../reports/snyk-report.sarif || exit 1
+          if [ -f ../reports/snyk-report.sarif ]; then
+            grep '"criticalSeverityCount":0' ../reports/snyk-report.sarif || exit 1
+          else
+            echo "El reporte Snyk no fue generado."
+            exit 1
+          fi
 
       # Subir el reporte SARIF generado por Snyk
       - name: Subir reporte SARIF de Snyk
