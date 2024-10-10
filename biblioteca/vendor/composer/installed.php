@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'erick/proyecto-si784-2024-ii-u1-ayma_poma_tapia',
-        'pretty_version' => 'dev-develop',
-        'version' => 'dev-develop',
-        'reference' => 'aa535580348dff11b9686f73d14c18b65aaa78ba',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '5cf6ddcae439dce93bdf5ce4f0bf191e7ea34cb6',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'erick/proyecto-si784-2024-ii-u1-ayma_poma_tapia' => array(
-            'pretty_version' => 'dev-develop',
-            'version' => 'dev-develop',
-            'reference' => 'aa535580348dff11b9686f73d14c18b65aaa78ba',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '5cf6ddcae439dce93bdf5ce4f0bf191e7ea34cb6',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

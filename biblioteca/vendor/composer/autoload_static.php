@@ -33,7 +33,7 @@ class ComposerStaticInitd4b12e424b7f907dc78aca6513f738f9
         ),
         'Erick\\ProyectoSi7842024IiU1AymaPomaTapia\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/biblioteca',
         ),
         'DeepCopy\\' => 
         array (

@@ -3,7 +3,7 @@
     "description": "Proyecto de biblioteca para gestionar libros",
     "autoload": {
         "psr-4": {
-            "Erick\\ProyectoSi7842024IiU1AymaPomaTapia\\": "src/"
+            "Erick\\ProyectoSi7842024IiU1AymaPomaTapia\\": "biblioteca/"
         }
     },
     "authors": [
