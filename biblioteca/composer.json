@@ -8,15 +8,19 @@
     },
     "authors": [
         {
-            "name": "erick",
+            "name": "Ayma Poma Tapia",
             "email": "zouozshalom@gmail.com"
         }
     ],
     "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2"
+    },
     "require-dev": {
         "phpunit/phpunit": "^11.3"
     },
-    "type": "library", 
-    "homepage": "https://github.com/UPT-FAING-EPIS/proyecto-si784-2024-ii-u1-ayma_poma_tapia.git", 
-    "license": "MIT"
+    "type": "library",
+    "homepage": "https://github.com/UPT-FAING-EPIS/proyecto-si784-2024-ii-u1-ayma_poma_tapia",
+    "license": "MIT",
+    "version": "1.0.0" 
 }
