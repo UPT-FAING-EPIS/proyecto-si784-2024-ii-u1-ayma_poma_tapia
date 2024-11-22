@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\Users\TheGoat\Desktop\proyecto\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca\Controller</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=11.0.7" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=11.0.7" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=11.0.7" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">C:\Users\TheGoat\Desktop\proyecto\proyecto-si784-2024-ii-u1-ayma_poma_tapia\biblioteca</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Controller</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Admin.php.html#2">Admin</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#2">Autor</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Configuracion.php.html#2">Configuracion</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#2">Editorial</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#2">Errors</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#2">Estudiantes</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Home.php.html#2">Home</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#2">Libros</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#2">Materia</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#2">Usuarios</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Libros.php.html#2">Libros</a></td><td class="text-right">506</td></tr>
+       <tr><td><a href="Usuarios.php.html#2">Usuarios</a></td><td class="text-right">420</td></tr>
+       <tr><td><a href="Autor.php.html#2">Autor</a></td><td class="text-right">342</td></tr>
+       <tr><td><a href="Admin.php.html#2">Admin</a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="Editorial.php.html#2">Editorial</a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="Estudiantes.php.html#2">Estudiantes</a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="Materia.php.html#2">Materia</a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="Home.php.html#2">Home</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Configuracion.php.html#2">Configuracion</a></td><td class="text-right">30</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Admin.php.html#3"><abbr title="Admin::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin.php.html#12"><abbr title="Admin::listar">listar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin.php.html#20"><abbr title="Admin::registrar">registrar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin.php.html#42"><abbr title="Admin::devolver">devolver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin.php.html#55"><abbr title="Admin::pdf">pdf</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#3"><abbr title="Autor::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#11"><abbr title="Autor::autor">autor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#16"><abbr title="Autor::registrar">registrar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#51"><abbr title="Autor::editar">editar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#61"><abbr title="Autor::modificar">modificar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#101"><abbr title="Autor::eliminarImagen">eliminarImagen</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#117"><abbr title="Autor::eliminar">eliminar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Autor.php.html#124"><abbr title="Autor::reingresar">reingresar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Configuracion.php.html#3"><abbr title="Configuracion::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Configuracion.php.html#12"><abbr title="Configuracion::listar">listar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Configuracion.php.html#17"><abbr title="Configuracion::actualizar">actualizar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#4"><abbr title="Editorial::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#12"><abbr title="Editorial::editorial">editorial</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#17"><abbr title="Editorial::registrar">registrar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#26"><abbr title="Editorial::editar">editar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#36"><abbr title="Editorial::modificar">modificar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#46"><abbr title="Editorial::eliminar">eliminar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Editorial.php.html#53"><abbr title="Editorial::reingresar">reingresar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#3"><abbr title="Errors::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#8"><abbr title="Errors::notFound">notFound</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#4"><abbr title="Estudiantes::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#12"><abbr title="Estudiantes::estudiantes">estudiantes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#17"><abbr title="Estudiantes::registrar">registrar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#31"><abbr title="Estudiantes::editar">editar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#41"><abbr title="Estudiantes::modificar">modificar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#56"><abbr title="Estudiantes::eliminar">eliminar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Estudiantes.php.html#63"><abbr title="Estudiantes::reingresar">reingresar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Home.php.html#3"><abbr title="Home::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Home.php.html#11"><abbr title="Home::home">home</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Home.php.html#15"><abbr title="Home::login">login</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#3"><abbr title="Libros::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#11"><abbr title="Libros::libros">libros</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#20"><abbr title="Libros::registrar">registrar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#67"><abbr title="Libros::editar">editar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#81"><abbr title="Libros::modificar">modificar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#139"><abbr title="Libros::eliminarImagen">eliminarImagen</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#155"><abbr title="Libros::eliminar">eliminar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#162"><abbr title="Libros::reingresar">reingresar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Libros.php.html#169"><abbr title="Libros::pdf">pdf</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#4"><abbr title="Materia::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#12"><abbr title="Materia::materia">materia</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#17"><abbr title="Materia::registrar">registrar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#26"><abbr title="Materia::editar">editar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#36"><abbr title="Materia::modificar">modificar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#46"><abbr title="Materia::eliminar">eliminar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Materia.php.html#54"><abbr title="Materia::reingresar">reingresar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#4"><abbr title="Usuarios::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#12"><abbr title="Usuarios::listar">listar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#17"><abbr title="Usuarios::insertar">insertar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#28"><abbr title="Usuarios::editar">editar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#38"><abbr title="Usuarios::actualizar">actualizar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#53"><abbr title="Usuarios::eliminar">eliminar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#60"><abbr title="Usuarios::reingresar">reingresar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#68"><abbr title="Usuarios::login">login</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#89"><abbr title="Usuarios::cambiar">cambiar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#105"><abbr title="Usuarios::perfil">perfil</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Usuarios.php.html#111"><abbr title="Usuarios::salir">salir</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Libros.php.html#81"><abbr title="Libros::modificar">modificar</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Autor.php.html#61"><abbr title="Autor::modificar">modificar</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Home.php.html#15"><abbr title="Home::login">login</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Libros.php.html#20"><abbr title="Libros::registrar">registrar</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Autor.php.html#16"><abbr title="Autor::registrar">registrar</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Usuarios.php.html#68"><abbr title="Usuarios::login">login</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Usuarios.php.html#89"><abbr title="Usuarios::cambiar">cambiar</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Admin.php.html#20"><abbr title="Admin::registrar">registrar</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin.php.html#42"><abbr title="Admin::devolver">devolver</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin.php.html#3"><abbr title="Admin::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Admin.php.html#55"><abbr title="Admin::pdf">pdf</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Autor.php.html#3"><abbr title="Autor::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Autor.php.html#51"><abbr title="Autor::editar">editar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Autor.php.html#101"><abbr title="Autor::eliminarImagen">eliminarImagen</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Configuracion.php.html#3"><abbr title="Configuracion::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Configuracion.php.html#17"><abbr title="Configuracion::actualizar">actualizar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Editorial.php.html#4"><abbr title="Editorial::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Editorial.php.html#17"><abbr title="Editorial::registrar">registrar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Editorial.php.html#26"><abbr title="Editorial::editar">editar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Editorial.php.html#36"><abbr title="Editorial::modificar">modificar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Estudiantes.php.html#4"><abbr title="Estudiantes::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Estudiantes.php.html#17"><abbr title="Estudiantes::registrar">registrar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Estudiantes.php.html#31"><abbr title="Estudiantes::editar">editar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Estudiantes.php.html#41"><abbr title="Estudiantes::modificar">modificar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Home.php.html#3"><abbr title="Home::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Libros.php.html#3"><abbr title="Libros::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Libros.php.html#67"><abbr title="Libros::editar">editar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Libros.php.html#139"><abbr title="Libros::eliminarImagen">eliminarImagen</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Libros.php.html#169"><abbr title="Libros::pdf">pdf</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Materia.php.html#4"><abbr title="Materia::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Materia.php.html#17"><abbr title="Materia::registrar">registrar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Materia.php.html#26"><abbr title="Materia::editar">editar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Materia.php.html#36"><abbr title="Materia::modificar">modificar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Usuarios.php.html#4"><abbr title="Usuarios::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Usuarios.php.html#28"><abbr title="Usuarios::editar">editar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Usuarios.php.html#38"><abbr title="Usuarios::actualizar">actualizar</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.7</a> using <a href="https://www.php.net/" target="_top">PHP 8.2.12</a> and <a href="https://phpunit.de/">PHPUnit 11.4.1</a> at Fri Nov 22 6:53:26 CET 2024.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=11.0.7" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=11.0.7" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=11.0.7" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([10,0,0,0,0,0,0,0,0,0,0,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([62,0,0,0,0,0,0,0,0,0,0,0], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,11,"<a href=\"Admin.php.html#2\">Admin<\/a>"],[0,18,"<a href=\"Autor.php.html#2\">Autor<\/a>"],[0,5,"<a href=\"Configuracion.php.html#2\">Configuracion<\/a>"],[0,11,"<a href=\"Editorial.php.html#2\">Editorial<\/a>"],[0,2,"<a href=\"Error.php.html#2\">Errors<\/a>"],[0,11,"<a href=\"Estudiantes.php.html#2\">Estudiantes<\/a>"],[0,8,"<a href=\"Home.php.html#2\">Home<\/a>"],[0,22,"<a href=\"Libros.php.html#2\">Libros<\/a>"],[0,11,"<a href=\"Materia.php.html#2\">Materia<\/a>"],[0,20,"<a href=\"Usuarios.php.html#2\">Usuarios<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,2,"<a href=\"Admin.php.html#3\">Admin::__construct<\/a>"],[0,1,"<a href=\"Admin.php.html#12\">Admin::listar<\/a>"],[0,3,"<a href=\"Admin.php.html#20\">Admin::registrar<\/a>"],[0,3,"<a href=\"Admin.php.html#42\">Admin::devolver<\/a>"],[0,2,"<a href=\"Admin.php.html#55\">Admin::pdf<\/a>"],[0,2,"<a href=\"Autor.php.html#3\">Autor::__construct<\/a>"],[0,1,"<a href=\"Autor.php.html#11\">Autor::autor<\/a>"],[0,4,"<a href=\"Autor.php.html#16\">Autor::registrar<\/a>"],[0,2,"<a href=\"Autor.php.html#51\">Autor::editar<\/a>"],[0,5,"<a href=\"Autor.php.html#61\">Autor::modificar<\/a>"],[0,2,"<a href=\"Autor.php.html#101\">Autor::eliminarImagen<\/a>"],[0,1,"<a href=\"Autor.php.html#117\">Autor::eliminar<\/a>"],[0,1,"<a href=\"Autor.php.html#124\">Autor::reingresar<\/a>"],[0,2,"<a href=\"Configuracion.php.html#3\">Configuracion::__construct<\/a>"],[0,1,"<a href=\"Configuracion.php.html#12\">Configuracion::listar<\/a>"],[0,2,"<a href=\"Configuracion.php.html#17\">Configuracion::actualizar<\/a>"],[0,2,"<a href=\"Editorial.php.html#4\">Editorial::__construct<\/a>"],[0,1,"<a href=\"Editorial.php.html#12\">Editorial::editorial<\/a>"],[0,2,"<a href=\"Editorial.php.html#17\">Editorial::registrar<\/a>"],[0,2,"<a href=\"Editorial.php.html#26\">Editorial::editar<\/a>"],[0,2,"<a href=\"Editorial.php.html#36\">Editorial::modificar<\/a>"],[0,1,"<a href=\"Editorial.php.html#46\">Editorial::eliminar<\/a>"],[0,1,"<a href=\"Editorial.php.html#53\">Editorial::reingresar<\/a>"],[0,1,"<a href=\"Error.php.html#3\">Errors::__construct<\/a>"],[0,1,"<a href=\"Error.php.html#8\">Errors::notFound<\/a>"],[0,2,"<a href=\"Estudiantes.php.html#4\">Estudiantes::__construct<\/a>"],[0,1,"<a href=\"Estudiantes.php.html#12\">Estudiantes::estudiantes<\/a>"],[0,2,"<a href=\"Estudiantes.php.html#17\">Estudiantes::registrar<\/a>"],[0,2,"<a href=\"Estudiantes.php.html#31\">Estudiantes::editar<\/a>"],[0,2,"<a href=\"Estudiantes.php.html#41\">Estudiantes::modificar<\/a>"],[0,1,"<a href=\"Estudiantes.php.html#56\">Estudiantes::eliminar<\/a>"],[0,1,"<a href=\"Estudiantes.php.html#63\">Estudiantes::reingresar<\/a>"],[0,2,"<a href=\"Home.php.html#3\">Home::__construct<\/a>"],[0,1,"<a href=\"Home.php.html#11\">Home::home<\/a>"],[0,5,"<a href=\"Home.php.html#15\">Home::login<\/a>"],[0,2,"<a href=\"Libros.php.html#3\">Libros::__construct<\/a>"],[0,1,"<a href=\"Libros.php.html#11\">Libros::libros<\/a>"],[0,5,"<a href=\"Libros.php.html#20\">Libros::registrar<\/a>"],[0,2,"<a href=\"Libros.php.html#67\">Libros::editar<\/a>"],[0,6,"<a href=\"Libros.php.html#81\">Libros::modificar<\/a>"],[0,2,"<a href=\"Libros.php.html#139\">Libros::eliminarImagen<\/a>"],[0,1,"<a href=\"Libros.php.html#155\">Libros::eliminar<\/a>"],[0,1,"<a href=\"Libros.php.html#162\">Libros::reingresar<\/a>"],[0,2,"<a href=\"Libros.php.html#169\">Libros::pdf<\/a>"],[0,2,"<a href=\"Materia.php.html#4\">Materia::__construct<\/a>"],[0,1,"<a href=\"Materia.php.html#12\">Materia::materia<\/a>"],[0,2,"<a href=\"Materia.php.html#17\">Materia::registrar<\/a>"],[0,2,"<a href=\"Materia.php.html#26\">Materia::editar<\/a>"],[0,2,"<a href=\"Materia.php.html#36\">Materia::modificar<\/a>"],[0,1,"<a href=\"Materia.php.html#46\">Materia::eliminar<\/a>"],[0,1,"<a href=\"Materia.php.html#54\">Materia::reingresar<\/a>"],[0,2,"<a href=\"Usuarios.php.html#4\">Usuarios::__construct<\/a>"],[0,1,"<a href=\"Usuarios.php.html#12\">Usuarios::listar<\/a>"],[0,1,"<a href=\"Usuarios.php.html#17\">Usuarios::insertar<\/a>"],[0,2,"<a href=\"Usuarios.php.html#28\">Usuarios::editar<\/a>"],[0,2,"<a href=\"Usuarios.php.html#38\">Usuarios::actualizar<\/a>"],[0,1,"<a href=\"Usuarios.php.html#53\">Usuarios::eliminar<\/a>"],[0,1,"<a href=\"Usuarios.php.html#60\">Usuarios::reingresar<\/a>"],[0,4,"<a href=\"Usuarios.php.html#68\">Usuarios::login<\/a>"],[0,4,"<a href=\"Usuarios.php.html#89\">Usuarios::cambiar<\/a>"],[0,1,"<a href=\"Usuarios.php.html#105\">Usuarios::perfil<\/a>"],[0,1,"<a href=\"Usuarios.php.html#111\">Usuarios::salir<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
